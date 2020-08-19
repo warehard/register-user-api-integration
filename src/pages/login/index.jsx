@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Form, Input, Button } from 'antd';
+import axios from 'axios'
+import { useHistory } from 'react-router-dom';
 
 const layout = {
   labelCol: { span: 8 },
@@ -12,14 +14,25 @@ const tailLayout = {
 
 const Login = () => {
 
-  const onFinish = values => {
-    console.log('Success:', values);
+  const history = useHistory()
+  const [token, setToken] = useState(localStorage.getItem('token'))
+  
+
+  const onFinish = async (values) => {
+    console.log(values)
+    const response = await axios.post('https://ka-users-api.herokuapp.com/authenticate', {
+      user: values.username, 
+      password: values.password
+    })
+    setToken(response.data.auth_token)
+    localStorage.setItem('token', response.data.auth_token)
+    history.push('/users')
   };
 
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
   };
-
+  console.log(token)
   return(
     <Form
       {...layout}
