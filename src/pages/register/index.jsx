@@ -30,11 +30,7 @@ const UserRegister = () => {
         "password": values.password,
         "password_confirmation": values.confirm
       }
-    })
-    .then(response => {
-      console.log(response);
-    })
-    .catch((err) => console.log(err));
+    }).catch((err) => console.log(err));
   };
 
   return (

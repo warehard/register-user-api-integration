@@ -12,19 +12,18 @@ const tailLayout = {
 };
 
 
-const Login = () => {
+const Login = ({ setToken, setAuthentication}) => {
 
   const history = useHistory()
-  const [token, setToken] = useState(localStorage.getItem('token'))
-  
 
   const onFinish = async (values) => {
     console.log(values)
     const response = await axios.post('https://ka-users-api.herokuapp.com/authenticate', {
       user: values.username, 
       password: values.password
-    })
+    }).catch(() => setAuthentication(false))
     setToken(response.data.auth_token)
+    setAuthentication(true)
     localStorage.setItem('token', response.data.auth_token)
     history.push('/users')
   };
@@ -32,7 +31,7 @@ const Login = () => {
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
   };
-  console.log(token)
+  // console.log(token)
   return(
     <div>
       <Form

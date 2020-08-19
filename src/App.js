@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Router from "./components/router";
 import "antd/dist/antd.css";
@@ -9,16 +9,22 @@ function App() {
 
   const location = useLocation();
 
-  console.log(location);
+  const [token, setToken] = useState(localStorage.getItem('token'))
 
   return (
     <div className="App">
+      {!token ? 
       <Container>
-        <LinkHolder className={location.pathname === "/register" && "register"} ><Link to="/register">Register</Link></LinkHolder>
-        <LinkHolder className={location.pathname === "/login" && "login"} ><Link to="/login">Login</Link></LinkHolder>
+        <LinkHolder className={location.pathname === "/register" && "register"} ><Link className="link" to="/register">Register</Link></LinkHolder>
+        <LinkHolder className={location.pathname === "/" && "login"} ><Link className="link" to="/">Login</Link></LinkHolder>
       </Container>
+      :
+      <Container>
+        <LinkHolder className={location.pathname === "/register" && "register"} ><Link className="link" to="/register">Register</Link></LinkHolder>
+        <LinkHolder className={location.pathname === "/" && "logout"} ><Link className="link" onClick={() => {localStorage.clear(); setToken(null)}} to="/">Logout</Link></LinkHolder>
+      </Container>}
       <header className="App-header">
-        <Router />
+        <Router token={token} setToken={setToken}/>
       </header>
     </div>
   );
@@ -32,10 +38,18 @@ const Container = styled.div`
 
   .register {
     border-bottom: 2px solid blue;
+
+  .link {
+    color: darkgoldenrod;
+  }
   }
 
   .login {
-    border-bottom: 2px solid blue;
+    border-bottom: 2px solid darkblue;
+
+  .link {
+    color: darkgoldenrod;
+  }
   }
 `;
 
@@ -44,4 +58,8 @@ const LinkHolder = styled.div`
   justify-content: center;
   align-items: center;
   margin-left:10px;
+
+  .link {
+    color: lightgray;
+  }
 `;
