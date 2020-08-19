@@ -110,13 +110,13 @@ const UserRegister = () => {
         <Input.Password />
       </Form.Item>
 
-      <Button type="primary" htmlType="submit">Register</Button>
+      <NewButton type="primary" htmlType="submit">Register</NewButton>
     </Form>
   )
 }
 
 export default UserRegister;
 
-/* const Button = styled.button`
-  background-color: #81AD7E; 
-` */
+const NewButton = styled(Button)`
+  background-color: #2794F0; 
+`;

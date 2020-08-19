@@ -37,18 +37,18 @@ const Container = styled.div`
   display: flex;
 
   .register {
-    border-bottom: 2px solid #81AD7E;
+    border-bottom: 2px solid #2794F0;
 
   .link {
-    color: #81AD7E;
+    color: #2794F0;
   }
   }
 
   .login {
-    border-bottom: 2px solid #81AD7E;
+    border-bottom: 2px solid #2794F0;
 
   .link {
-    color: #81AD7E;
+    color: #2794F0;
   }
   }
 `;

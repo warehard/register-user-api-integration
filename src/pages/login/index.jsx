@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Form, Input, Button } from 'antd';
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
+import styled from "styled-components";
 
 const layout = {
   labelCol: { span: 8 },
@@ -32,7 +33,13 @@ const Login = ({ setToken, setAuthentication}) => {
     catch(error) { setAuthentication(false) }
 
 
-    
+    /*
+///////////////////////////////////////////////////
+FUI BUSCAR UM CHÁ. JÁ VOLTO. -- JÁ VOLTEI... SÓ CHAMAR.
+//////////////////////////////////////////////////
+    */
+
+
   };
 
   const onFinishFailed = errorInfo => {
@@ -69,9 +76,9 @@ const Login = ({ setToken, setAuthentication}) => {
         </Form.Item>
 
         <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit">
+          <NewButton type="primary" htmlType="submit">
             Submit
-          </Button>
+          </NewButton>
         </Form.Item>
       </Form>
     </div>
@@ -79,3 +86,7 @@ const Login = ({ setToken, setAuthentication}) => {
 }
 
 export default Login;
+
+const NewButton = styled(Button)`
+  background-color: #2794F0; 
+`;
