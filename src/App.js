@@ -10,7 +10,7 @@ function App() {
   const location = useLocation();
 
   const [token, setToken] = useState(localStorage.getItem('token'))
-
+  console.log(token)
   return (
     <div className="App">
       {!token ? 
@@ -37,18 +37,18 @@ const Container = styled.div`
   display: flex;
 
   .register {
-    border-bottom: 2px solid blue;
+    border-bottom: 2px solid #81AD7E;
 
   .link {
-    color: darkgoldenrod;
+    color: #81AD7E;
   }
   }
 
   .login {
-    border-bottom: 2px solid darkblue;
+    border-bottom: 2px solid #81AD7E;
 
   .link {
-    color: darkgoldenrod;
+    color: #81AD7E;
   }
   }
 `;

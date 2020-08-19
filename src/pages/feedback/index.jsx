@@ -3,7 +3,7 @@ import React from 'react'
 const Feedback = () => {
   return(
     <div>
-      new feedback
+      feedback
     </div>
   )
 }

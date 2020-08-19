@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
 import axios from 'axios';
+import styled from "styled-components";
 
 const defaultValues = {
   name: "",
@@ -115,3 +116,7 @@ const UserRegister = () => {
 }
 
 export default UserRegister;
+
+/* const Button = styled.button`
+  background-color: #81AD7E; 
+` */

@@ -18,20 +18,27 @@ const Login = ({ setToken, setAuthentication}) => {
 
   const onFinish = async (values) => {
     console.log(values)
+    try{
     const response = await axios.post('https://ka-users-api.herokuapp.com/authenticate', {
       user: values.username, 
       password: values.password
-    }).catch(() => setAuthentication(false))
+    })
+
     setToken(response.data.auth_token)
     setAuthentication(true)
     localStorage.setItem('token', response.data.auth_token)
     history.push('/users')
+    }
+    catch(error) { setAuthentication(false) }
+
+
+    
   };
 
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
   };
-  // console.log(token)
+
   return(
     <div>
       <Form

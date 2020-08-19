@@ -5,6 +5,7 @@ import Login from '../../pages/login'
 import Users from '../../pages/users'
 import NewFeeback from '../../pages/new-feedback'
 import Feedback from '../../pages/feedback'
+import axios from 'axios'
 
 
 const Router = ({ token, setToken}) => {
@@ -13,9 +14,10 @@ const Router = ({ token, setToken}) => {
   const history = useHistory()
   
   useEffect(() => {
-    !token && setAuthentication(false);
+    token === null && setAuthentication(false);
+    token !== null && setAuthentication(true)
   }, [token]);
-  
+  console.log(authentication)
   return(
     <div>
       {
