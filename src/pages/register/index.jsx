@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
+import axios from 'axios';
 
 const defaultValues = {
   name: "",
   username: "",
   email: "",
-  password: ""
+  password: "",
+  confirm: ""
 }
 
 const UserRegister = () => {
@@ -15,16 +17,24 @@ const UserRegister = () => {
     wrapperCol: { span: 16 },
   };
 
-  const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 },
-  };
+  const onFinish = async values => {
 
-  const onFinish = values => {
     console.log('Success:', values);
-  };
 
-  const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
+    const response = await axios.post('https://ka-users-api.herokuapp.com/users', {
+      "headers": { 'content-type': 'application/json' },
+      "user": {
+        "name": values.name,
+        "user": values.username,
+        "email": values.email,
+        "password": values.password,
+        "password_confirmation": values.confirm
+      }
+    })
+    .then(response => {
+      console.log(response);
+    })
+    .catch((err) => console.log(err));
   };
 
   return (
@@ -32,7 +42,6 @@ const UserRegister = () => {
       name="basic"
       initialValues={{ remember: true }}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
     >
       <Form.Item
         label="Name"
@@ -51,22 +60,60 @@ const UserRegister = () => {
       </Form.Item>
 
       <Form.Item
-        label="Email"
         name="email"
-        rules={[{ required: true, message: 'Please input your Email!' }]}
+        label="E-mail"
+        rules={[
+          {
+            type: 'email',
+            message: 'The input is not valid E-mail!',
+          },
+          {
+            required: true,
+            message: 'Please input your E-mail!',
+          },
+        ]}
       >
         <Input />
       </Form.Item>
 
       <Form.Item
-        label="Password"
         name="password"
-        rules={[{ required: true, message: 'Please input your password!' }]}
+        label="Password"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your password!',
+          },
+        ]}
+        hasFeedback
       >
         <Input.Password />
       </Form.Item>
 
-      <Button type="submit" >Sign Up</Button>
+      <Form.Item
+        name="confirm"
+        label="Confirm Password"
+        dependencies={['password']}
+        hasFeedback
+        rules={[
+          {
+            required: true,
+            message: 'Please confirm your password!',
+          },
+          ({ getFieldValue }) => ({
+            validator(rule, value) {
+              if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+              }
+              return Promise.reject('The two passwords that you entered do not match!');
+            },
+          }),
+        ]}
+      >
+        <Input.Password />
+      </Form.Item>
+
+      <Button type="primary" htmlType="submit">Register</Button>
     </Form>
   )
 }
