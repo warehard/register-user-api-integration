@@ -35,9 +35,6 @@ const Login = () => {
   console.log(token)
   return(
     <div>
-      <div>
-        
-      </div>
       <Form
         {...layout}
         name="basic"
@@ -75,4 +72,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;

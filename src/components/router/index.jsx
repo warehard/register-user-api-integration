@@ -8,28 +8,35 @@ import Feedback from '../../pages/feedback'
 
 const Router = () => {
   return(
-    <Switch>
-      <Route path='/users/feedback/:id/new'>
-          <NewFeeback />
-      </Route>
+    <div>
+      <Switch>
+        <Route path='/users/feedback/:id/new'>
+            <NewFeeback />
+        </Route>
 
-      <Route path='/users/feedback/:id'>
-        <Feedback />
-      </Route>
+        <Route path='/users/feedback/:id'>
+          <Feedback />
+        </Route>
 
-      <Route path='/users'>
-        <Users />
-      </Route>
+        <Route path='/users'>
+          <Users />
+        </Route>
 
-      <Route path='/register'>
-        <UserRegister />
-      </Route>
+        <Route path='/register'>
+          <UserRegister />
+        </Route>
 
-      <Route exact path='/'>
-          <Login />
-      </Route>
-    </Switch>
+        <Route path='/login'>
+            <Login />
+        </Route>
+
+        <Route exact path='/'>
+            <Login />
+        </Route>
+      </Switch>
+    </div>
   )
 }
 
-export default Router
+export default Router;
+
