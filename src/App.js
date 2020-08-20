@@ -26,7 +26,7 @@ function App() {
       </Container>
       :
       <Container>
-        <LinkHolder className={location.pathname === "/register" && "register"} ><Link className="link" to="/register">Register</Link></LinkHolder>
+        <LinkHolder className={location.pathname === "/register" && "register"} ><Link className="link" to="/users">Students</Link></LinkHolder>
         <LinkHolder className={location.pathname === "/" && "login"} ><Link className="link" onClick={() => {localStorage.clear(); setToken(null)}} to="/">Logout</Link></LinkHolder>
       </Container>}
       <header className="App-header">
