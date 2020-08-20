@@ -13,27 +13,27 @@ const Users = ({ token }) => {
     {
       title: "id",
       dataIndex: 'id',
-      minWidth: 150
+      //minWidth: 150
     },
     {
       title: "Name",
       dataIndex: 'name',
-      minWidth: 150
+      //minWidth: 150
     },
     {
       title: "User",
       dataIndex: 'user',
-      minWidth: 150
+      //minWidth: 150
     },
     {
       title: "Email",
       dataIndex: 'email',
-      minWidth: 150
+      //minWidth: 150
     },
     {
       title: "Feedbacks",
       dataIndex: 'feedbacks',
-      minWidth: 150,
+      //minWidth: 150,
     render: (text,user,) => <Link to={`/users/${user.id}/feedback`} >Feeback</Link>
     }
   ]
