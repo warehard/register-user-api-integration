@@ -15,8 +15,7 @@ const tailLayout = {
 const Login = () => {
 
   const history = useHistory()
-  const [token, setToken] = useState(localStorage.getItem('token'))
-  
+  const [token, setToken] = useState(localStorage.getItem('token'));
 
   const onFinish = async (values) => {
     console.log(values)

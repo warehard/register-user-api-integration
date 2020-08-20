@@ -11,7 +11,7 @@ const Users = () => {
   }
 
   return(
-    <>
+    <div>
     <Table>
       <Column title='id'></Column>
       <Column title='Name'></Column>
@@ -30,7 +30,7 @@ const Users = () => {
       total={500}
     />
     
-    </>
+    </div>
   )
 }
 

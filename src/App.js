@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./App.css";
 import Router from "./components/router";
 import "antd/dist/antd.css";
@@ -11,12 +11,20 @@ function App() {
 
   console.log(location);
 
+  const [tokenState, setTokenState] = useState(window.localStorage.getItem('token'));
+
+  console.log("tokenState: " + tokenState);
+
   return (
     <div className="App">
-      <Container>
-        <LinkHolder className={location.pathname === "/register" && "register"} ><Link to="/register">Register</Link></LinkHolder>
-        <LinkHolder className={location.pathname === "/login" && "login"} ><Link to="/login">Login</Link></LinkHolder>
-      </Container>
+
+      <div>
+        <Container>
+          <LinkHolder className={location.pathname === "/register" && "register"} ><Link to="/register">Register</Link></LinkHolder>
+          <LinkHolder className={location.pathname === "/login" && "login"} ><Link to="/login">Login</Link></LinkHolder>
+        </Container> 
+      </div>
+      
       <header className="App-header">
         <Router />
       </header>
