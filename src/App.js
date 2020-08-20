@@ -41,6 +41,7 @@ export default App;
 const Container = styled.div`
   height: 50px;
   display: flex;
+  background-color: #181A1B;
 
   .register {
     border-bottom: 2px solid #2794F0;
