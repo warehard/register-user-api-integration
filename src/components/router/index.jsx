@@ -24,12 +24,12 @@ const Router = ({ token, setToken }) => {
       {
         authentication ?
           <Switch>
-            <Route path='/users/:id/feedback/new'>
+            <Route path='/users/feedback/:id/new'>
               <NewFeeback />
             </Route>
 
-            <Route path='/users/:id/feedback/'>
-              <Feedback />
+            <Route path='/users/feedback/:id'>
+              <Feedback token={token }/>
             </Route>
 
             <Route path='/users'>
