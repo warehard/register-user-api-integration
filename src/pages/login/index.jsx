@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Form, Input, Button } from 'antd';
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
+import styled from "styled-components";
 
 const layout = {
   labelCol: { span: 8 },
@@ -12,26 +13,32 @@ const tailLayout = {
 };
 
 
-const Login = () => {
+const Login = ({ setToken, setAuthentication}) => {
 
   const history = useHistory()
-  const [token, setToken] = useState(localStorage.getItem('token'));
 
   const onFinish = async (values) => {
     console.log(values)
+    try{
     const response = await axios.post('https://ka-users-api.herokuapp.com/authenticate', {
       user: values.username, 
       password: values.password
     })
+
     setToken(response.data.auth_token)
+    setAuthentication(true)
     localStorage.setItem('token', response.data.auth_token)
     history.push('/users')
+    }
+    catch(error) { setAuthentication(false) }
+
+
   };
 
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
   };
-  console.log(token)
+
   return(
     <div>
       <Form
@@ -62,9 +69,9 @@ const Login = () => {
         </Form.Item>
 
         <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit">
+          <NewButton type="primary" htmlType="submit">
             Submit
-          </Button>
+          </NewButton>
         </Form.Item>
       </Form>
     </div>
@@ -72,3 +79,7 @@ const Login = () => {
 }
 
 export default Login;
+
+const NewButton = styled(Button)`
+  background-color: #2794F0; 
+`;

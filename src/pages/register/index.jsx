@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
 import axios from 'axios';
+import styled from "styled-components";
 
 const defaultValues = {
   name: "",
@@ -30,11 +31,7 @@ const UserRegister = () => {
         "password": values.password,
         "password_confirmation": values.confirm
       }
-    })
-    .then(response => {
-      console.log(response);
-    })
-    .catch((err) => console.log(err));
+    }).catch((err) => console.log(err));
   };
 
   return (
@@ -113,9 +110,13 @@ const UserRegister = () => {
         <Input.Password />
       </Form.Item>
 
-      <Button type="primary" htmlType="submit">Register</Button>
+      <NewButton type="primary" htmlType="submit">Register</NewButton>
     </Form>
   )
 }
 
 export default UserRegister;
+
+const NewButton = styled(Button)`
+  background-color: #2794F0; 
+`;
