@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Form, Input, Button } from 'antd';
 import axios from 'axios';
 import styled from "styled-components";
 
-const defaultValues = {
-  name: "",
-  username: "",
-  email: "",
-  password: "",
-  confirm: ""
-}
+// const defaultValues = {
+//   name: "",
+//   username: "",
+//   email: "",
+//   password: "",
+//   confirm: ""
+// }
 
 const UserRegister = () => {
 

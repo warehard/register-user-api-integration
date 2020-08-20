@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Pagination, Table, Tag, Space } from 'antd'
-import Column from 'antd/lib/table/Column';
-import axios from 'axios'
+import { Table } from 'antd'
 import { getUsers } from './helper';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
@@ -13,37 +11,27 @@ const Users = ({ token }) => {
     {
       title: "id",
       dataIndex: 'id',
-      //minWidth: 150
     },
     {
       title: "Name",
       dataIndex: 'name',
-      //minWidth: 150
     },
     {
       title: "User",
       dataIndex: 'user',
-      //minWidth: 150
     },
     {
       title: "Email",
       dataIndex: 'email',
-      //minWidth: 150
     },
     {
       title: "Feedbacks",
       dataIndex: 'feedbacks',
-      //minWidth: 150,
-    render: (text,user,) => <Link to={`/users/${user.id}/feedback`} >Feeback</Link>
+      render: (_,user) => <Link to={`/users/feedbacks/${user.id}`} >Feedback</Link>
     }
   ]
 
-const [users, setUsers] = useState([])
-
-  //IS IT REALLY NECESSARY??
-  /* function onShowSizeChange(current, pageSize) {
-    console.log(current, pageSize);
-  } */
+  const [users, setUsers] = useState([])
 
   useEffect(  () =>{
     const data = async () => {
@@ -53,8 +41,6 @@ const [users, setUsers] = useState([])
   },[])
   
   users.map(e=> e.key = e.id);
-
-  // users.map(e=> {e.key = e.id; e.feedbacks = "Feedback"} )
   
   return(
     <Container>
