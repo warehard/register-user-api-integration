@@ -6,6 +6,7 @@ import Users from '../../pages/users'
 import NewFeeback from '../../pages/new-feedback'
 import Feedback from '../../pages/feedback'
 // import OurHeader from '../../components/our-header'
+import errorImage from '../../images/404.svg';
 
 
 const Router = ({ token, setToken }) => {
@@ -53,7 +54,9 @@ const Router = ({ token, setToken }) => {
           :
           <Switch>
             <Route path='/users'>
-              <h1>404</h1>
+              <div className="register-login" >
+                <img src={errorImage} alt="404 Error" />
+              </div>
             </Route>
 
             <Route path='/register'>
