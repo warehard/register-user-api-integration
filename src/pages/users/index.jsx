@@ -4,6 +4,7 @@ import Column from 'antd/lib/table/Column';
 import axios from 'axios'
 import { getUsers } from './helper';
 import { Link } from 'react-router-dom';
+import styled from "styled-components";
 
 
 const Users = ({ token }) => {
@@ -33,15 +34,16 @@ const Users = ({ token }) => {
       title: "Feedbacks",
       dataIndex: 'feedbacks',
       minWidth: 150,
-      render: () => <Link to='/users/:id/feeback'>Feedback</Link>
+      render: () => <Link to='/users/:id/feeback' >Feedback</Link>
     }
   ]
 
 const [users, setUsers] = useState([])
 
-  function onShowSizeChange(current, pageSize) {
+  //IS IT REALLY NECESSARY??
+  /* function onShowSizeChange(current, pageSize) {
     console.log(current, pageSize);
-  }
+  } */
 
   useEffect(  () =>{
     const data = async () => {
@@ -51,15 +53,33 @@ const [users, setUsers] = useState([])
   },[])
   
   users.map(e=> e.key = e.id);
+
+  // users.map(e=> {e.key = e.id; e.feedbacks = "Feedback"} )
   
   return(
-    <div style={{width:'100%'}} >
-    <h1>Students</h1>
+    <Container>
+    <h1 className="title" >Students</h1>
     <Table columns={columns} dataSource={users} style={{width:'90%'}}/>
-    </div>
+    </Container>
   )
 }
 
 export default Users;
 
-/* const Container =  */
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  .title {
+    width: 90%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 1rem 5rem;
+    font-size: 4rem;
+  }
+`

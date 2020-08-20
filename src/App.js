@@ -1,16 +1,20 @@
 import React, { useState } from "react";
-import "./App.css";
-import Router from "./components/router";
-import "antd/dist/antd.css";
-import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
+
+import Router from "./components/router";
+
+import "./App.css";
+import "antd/dist/antd.css";
+
+import styled from "styled-components";
 
 function App() {
 
   const location = useLocation();
+  const [token, setToken] = useState(localStorage.getItem('token'));
 
-  const [token, setToken] = useState(localStorage.getItem('token'))
-  console.log(token)
+  console.log(token);
+  
   return (
     <div className="App">
       {!token ? 
