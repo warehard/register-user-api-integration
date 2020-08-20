@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Form, Input, Button } from 'antd';
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
@@ -15,10 +15,12 @@ const tailLayout = {
 
 const Login = ({ setToken, setAuthentication}) => {
 
+
+  const [loginError, setLoginError] = useState('')
   const history = useHistory()
 
   const onFinish = async (values) => {
-    console.log(values)
+    
     try{
     const response = await axios.post('https://ka-users-api.herokuapp.com/authenticate', {
       user: values.username, 
@@ -30,15 +32,17 @@ const Login = ({ setToken, setAuthentication}) => {
     localStorage.setItem('token', response.data.auth_token)
     history.push('/users')
     }
-    catch(error) { setAuthentication(false) }
-
-
+    catch(error) { 
+      setAuthentication(false)
+      setLoginError(error.response.data.error.user_authentication)
+      
+    }
   };
 
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
   };
-
+  console.log(loginError)
   return(
     <div>
       <Form
@@ -62,8 +66,9 @@ const Login = ({ setToken, setAuthentication}) => {
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
           <Input.Password />
+            
         </Form.Item>
-
+        {<span>{loginError}</span>}
         <Form.Item {...tailLayout} name="remember" valuePropName="checked">
           
         </Form.Item>

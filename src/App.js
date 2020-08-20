@@ -14,7 +14,7 @@ function App() {
   const location = useLocation();
   const [token, setToken] = useState(localStorage.getItem('token'));
 
-  console.log(token);
+  
   
   return (
     <div className="App">

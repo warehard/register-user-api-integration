@@ -17,23 +17,23 @@ const Router = ({ token, setToken }) => {
     token && setAuthentication(true)
   }, [token]);
 
-  console.log(authentication);
+
 
   return (
-    < /* style={{ width: '100%', margin: '0' }} */ >
+    <>
       {
         authentication ?
           <Switch>
-            <Route path='/users/feedback/:id/new'>
+            <Route path='/users/:id/feedback/new'>
               <NewFeeback />
             </Route>
 
-            <Route path='/users/feedback/:id'>
+            <Route path='/users/:id/feedback/'>
               <Feedback />
             </Route>
 
             <Route path='/users'>
-              <div className="users" style={{ width: '100%', margin: '0'}} >
+              <div className="users" style={{ width: '100%', margin: '0' }} >
                 <Users token={token} />
               </div>
             </Route>
@@ -72,7 +72,9 @@ const Router = ({ token, setToken }) => {
 
           </Switch>
       }
+
     </>
+
   )
 }
 
