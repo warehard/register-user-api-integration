@@ -5,13 +5,12 @@ import Login from '../../pages/login'
 import Users from '../../pages/users'
 import NewFeeback from '../../pages/new-feedback'
 import Feedback from '../../pages/feedback'
-import axios from 'axios'
+
 
 
 const Router = ({ token, setToken}) => {
 
   const [authentication, setAuthentication] = useState(undefined)
-  const history = useHistory()
   
   useEffect(() => {
     token === null && setAuthentication(false);
@@ -32,7 +31,7 @@ const Router = ({ token, setToken}) => {
           </Route>
 
           <Route path='/users'>
-            <Users />
+            <Users token={token}/>
           </Route>
 
           <Route path='/register'>
@@ -45,14 +44,6 @@ const Router = ({ token, setToken}) => {
         </Switch>
         :
           <Switch>
-          <Route path='/users/feedback/:id/new'>
-            <NewFeeback />
-          </Route>
-
-          <Route path='/users/feedback/:id'>
-            <Feedback />
-          </Route>
-
           <Route path='/users'>
             <h1>404</h1>
           </Route>
@@ -60,9 +51,11 @@ const Router = ({ token, setToken}) => {
           <Route path='/register'>
             <UserRegister />
           </Route>
+
           <Route exact path='/'>
               <Login setAuthentication={setAuthentication} setToken={setToken}/>
           </Route>
+          
           </Switch>
       }
     </div>

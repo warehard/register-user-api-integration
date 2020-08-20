@@ -33,13 +33,6 @@ const Login = ({ setToken, setAuthentication}) => {
     catch(error) { setAuthentication(false) }
 
 
-    /*
-///////////////////////////////////////////////////
-FUI BUSCAR UM CHÁ. JÁ VOLTO. -- JÁ VOLTEI... SÓ CHAMAR.
-//////////////////////////////////////////////////
-    */
-
-
   };
 
   const onFinishFailed = errorInfo => {

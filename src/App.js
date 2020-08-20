@@ -47,7 +47,7 @@ const Container = styled.div`
   .login {
     border-bottom: 2px solid #2794F0;
 
-  .link {
+  .link:hover {
     color: #2794F0;
   }
   }
