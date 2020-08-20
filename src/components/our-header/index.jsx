@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 
 const location = useLocation();
-const [token, setToken] = useState(localStorage.getItem('token'))
 
 const OurHeader = ({token, setToken}) => {
     return (

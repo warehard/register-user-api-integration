@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import Router from "./components/router";
+// import OurHeader from './components/our-header';
 
 import "./App.css";
 import "antd/dist/antd.css";
@@ -17,6 +18,7 @@ function App() {
   
   return (
     <div className="App">
+      {/* <OurHeader token={token} setToken={setToken} /> */}
       {!token ? 
       <Container>
         <LinkHolder className={location.pathname === "/register" && "register"} ><Link className="link" to="/register">Register</Link></LinkHolder>
@@ -25,7 +27,7 @@ function App() {
       :
       <Container>
         <LinkHolder className={location.pathname === "/register" && "register"} ><Link className="link" to="/register">Register</Link></LinkHolder>
-        <LinkHolder className={location.pathname === "/" && "logout"} ><Link className="link" onClick={() => {localStorage.clear(); setToken(null)}} to="/">Logout</Link></LinkHolder>
+        <LinkHolder className={location.pathname === "/" && "login"} ><Link className="link" onClick={() => {localStorage.clear(); setToken(null)}} to="/">Logout</Link></LinkHolder>
       </Container>}
       <header className="App-header">
         <Router token={token} setToken={setToken}/>
@@ -50,10 +52,10 @@ const Container = styled.div`
 
   .login {
     border-bottom: 2px solid #2794F0;
+  }
 
   .link:hover {
     color: #2794F0;
-  }
   }
 `;
 

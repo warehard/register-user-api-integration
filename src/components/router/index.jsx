@@ -5,7 +5,6 @@ import Login from '../../pages/login'
 import Users from '../../pages/users'
 import NewFeeback from '../../pages/new-feedback'
 import Feedback from '../../pages/feedback'
-// import OurHeader from '../../components/our-header'
 import errorImage from '../../images/404.svg';
 
 
