@@ -11,3 +11,4 @@ export const getUser = async (id, token) => {
   return response.data
 }
 
+

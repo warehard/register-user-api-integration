@@ -27,7 +27,7 @@ const Users = ({ token }) => {
     {
       title: "Feedbacks",
       dataIndex: 'feedbacks',
-      render: (_,user) => <Link to={`/users/feedback/${user.id}`} >Feedback</Link>
+      render: (_,user) => <Link to={`/users/feedbacks/${user.id}`} >Feedback</Link>
     }
   ]
 

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Table } from 'antd'
-import { Link, useParams } from 'react-router-dom';
+import { Table, Button } from 'antd'
+import { useParams, useHistory } from 'react-router-dom';
 import styled from "styled-components";
-import axios from 'axios';
 import { getUser } from './helper';
 
-const Feedback = ({token }) => {
-
-  const params = useParams();
+const Feedback = ({ token }) => {
+  
+  const history = useHistory()
+  const { id } = useParams();
   const [user, setUser] = useState([])
 
   const columns = [
@@ -32,16 +32,24 @@ const Feedback = ({token }) => {
 
   useEffect(() => {
       const user = async () => {
-        setUser(await getUser(params.id, token))
+        setUser(await getUser(id, token))
       }
       user()
   }, [])
-  console.log(user)
+
+  const handleClick = ( id ) => {
+    history.push(`/users/feedbacks/${id}/new`)
+  }
+  
   user.map(e => e.key = e.id)
+
   return(
     <Container>
       <h1>Feedback</h1>
       <Table columns={columns} dataSource={user} style={{width:'90%'}}/>
+      <Button type="primary" onClick={() => handleClick(id)}>
+            New Feedback
+          </Button>
     </Container>
   )
 }

@@ -19,12 +19,12 @@ const Login = ({ setToken, setAuthentication}) => {
   const [loginError, setLoginError] = useState('')
   const history = useHistory()
 
-  const onFinish = async (values) => {
+  const onFinish = async ({username, password}) => {
     
     try{
     const response = await axios.post('https://ka-users-api.herokuapp.com/authenticate', {
-      user: values.username, 
-      password: values.password
+      user: username, 
+      password: password
     })
 
     setToken(response.data.auth_token)
