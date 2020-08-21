@@ -13,29 +13,29 @@ const tailLayout = {
 };
 
 
-const Login = ({ setToken, setAuthentication}) => {
+const Login = ({ setToken, setAuthentication }) => {
 
 
   const [loginError, setLoginError] = useState('')
   const history = useHistory()
 
-  const onFinish = async ({username, password}) => {
-    
-    try{
-    const response = await axios.post('https://ka-users-api.herokuapp.com/authenticate', {
-      user: username, 
-      password: password
-    })
+  const onFinish = async ({ username, password }) => {
 
-    setToken(response.data.auth_token)
-    setAuthentication(true)
-    localStorage.setItem('token', response.data.auth_token)
-    history.push('/users')
+    try {
+      const response = await axios.post('https://ka-users-api.herokuapp.com/authenticate', {
+        user: username,
+        password: password
+      })
+
+      setToken(response.data.auth_token)
+      setAuthentication(true)
+      localStorage.setItem('token', response.data.auth_token)
+      history.push('/users')
     }
-    catch(error) { 
+    catch (error) {
       setAuthentication(false)
       setLoginError(error.response.data.error.user_authentication)
-      
+
     }
   };
 
@@ -43,7 +43,7 @@ const Login = ({ setToken, setAuthentication}) => {
     console.log('Failed:', errorInfo);
   };
   console.log(loginError)
-  return(
+  return (
     <div>
       <Form
         {...layout}
@@ -52,33 +52,33 @@ const Login = ({ setToken, setAuthentication}) => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
-        <Form.Item
+        <NewFormItem
           label="Username"
           name="username"
           rules={[{ required: true, message: 'Please input your username!' }]}
         >
           <NewInput />
-        </Form.Item>
+        </NewFormItem>
 
-        <Form.Item
+        <NewFormItem
           label="Password"
           name="password"
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
           {/* <Input.Password /> */}
           <NewPass />
-            
-        </Form.Item>
-        {<span>{loginError}</span>}
-        <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-          
-        </Form.Item>
 
-        <Form.Item {...tailLayout}>
+        </NewFormItem>
+        {<span>{loginError}</span>}
+        <NewFormItem {...tailLayout} name="remember" valuePropName="checked">
+
+        </NewFormItem>
+
+        <NewFormItem {...tailLayout}>
           <NewButton type="primary" htmlType="submit">
             Submit
           </NewButton>
-        </Form.Item>
+        </NewFormItem>
       </Form>
     </div>
   )
@@ -103,6 +103,22 @@ const NewPass = styled(Input.Password)`
     background-color: #1B1D1E;
     color: whitesmoke;
   }
+`;
+
+const NewFormItem = styled(Form.Item)`
+ 
+
+ .ant-form-item-label > label {
+    position: relative;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 32px;
+    color: rgba(200, 200, 200, 1);
+    font-size: 14px;
+  }
+  
 `;
 
 // style={{background-color:'#181A1B'}}

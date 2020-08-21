@@ -72,8 +72,8 @@ const Container = styled.div`
 `;
 
 const NewTable = styled(Table)`
-  div, button, p, h1 {
-    background-color: #1B1D1E;
+  div, button, p, h1, span {
+    background-color: #1B1D1E !important ;
     color: whitesmoke;
   }
 
@@ -81,62 +81,34 @@ const NewTable = styled(Table)`
     color: #2794F0;
   }
 
-  th, td, tr, li {
-    background-color: #1B1D1E;
-    color: #1B1D1E;
+  th, tr, td, li {
+    background-color: #1B1D1E !important ;
+    color: whitesmoke !important ;
   }
 
-  span {
-      background-color: #1B1D1E;
-      color: whitesmoke;
-    }
-
     .ant-pagination-item-ellipsis {
-      background-color: #1B1D1E;
-      color: whitesmoke;
-    }
-
-    .ant-select-selector, .ant-table-cell {
-      background-color: #1B1D1E;
-      color: whitesmoke;
-    }
-
-    .ant-table-cell:hover {
-      background-color: goldenrod;
+      background-color: #1B1D1E ;
+      color: whitesmoke !important ;
     }
 
     th:hover, td:hover {
-      color: darkred;
-      background-color: goldenrod;
+      color: whitesmoke;
+      background-color: goldenrod !important ;
     }
     
     th::selection, td::selection {
-      color: darkred;
-      background-color: goldenrod;
+      color: whitesmoke;
+      background-color: goldenrod !important ;
     }
 
-    .ant-select-selector:hover {
+    .ant-table-row:hover, .ant-table-row-level-0:hover {
       color: darkred;
-      background-color: goldenrod;
+      background-color: goldenrod !important ;
     }
 
-    .ant-table-row:hover {
+    .ant-table-row::selection, .ant-table-row-level-0::selection {
       color: darkred;
-      background-color: goldenrod;
-    }
-    
-    .ant-table-row-level-0:hover {
-      color: darkred;
-      background-color: goldenrod;
-    }
-
-    .ant-table-row-level-0::selection,
-    .ant-table-row::selection,
-    .ant-select-selector::selection
-    {
-      color: darkred;
-      background-color: goldenrod;
-      
+      background-color: goldenrod !important ;
     }
   
 `;

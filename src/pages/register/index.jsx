@@ -41,23 +41,23 @@ const UserRegister = () => {
       initialValues={{ remember: true }}
       onFinish={onFinish}
     >
-      <Form.Item
+      <NewFormItem
         label="Name"
         name="name"
         rules={[{ required: true, message: 'Please input your Name!' }]}
       >
         <NewInput />
-      </Form.Item>
+      </NewFormItem>
 
-      <Form.Item
+      <NewFormItem
         label="Username"
         name="username"
         rules={[{ required: true, message: 'Please input your username!' }]}
       >
         <NewInput />
-      </Form.Item>
+      </NewFormItem>
 
-      <Form.Item
+      <NewFormItem
         name="email"
         label="E-mail"
         rules={[
@@ -72,9 +72,9 @@ const UserRegister = () => {
         ]}
       >
         <NewInput />
-      </Form.Item>
+      </NewFormItem>
 
-      <Form.Item
+      <NewFormItem
         name="password"
         label="Password"
         rules={[
@@ -87,9 +87,9 @@ const UserRegister = () => {
       >
         {/* <Input.Password /> */}
         <NewPass />
-      </Form.Item>
+      </NewFormItem>
 
-      <Form.Item
+      <NewFormItem
         name="confirm"
         label="Confirm Password"
         dependencies={['password']}
@@ -111,7 +111,7 @@ const UserRegister = () => {
       >
         {/* <Input.Password /> */}
         <NewPass />
-      </Form.Item>
+      </NewFormItem>
 
       <NewButton type="primary" htmlType="submit">Register</NewButton>
     </Form>
@@ -129,11 +129,24 @@ const NewInput = styled(Input)`
   color: whitesmoke;
 `;
 
-const newFormItem = styled(Form.Item)`
-  span, p {
-    color: whitesmoke;
-  }
+const NewFormItem = styled(Form.Item)`
   
+  .ant-form-item-label > label {
+    position: relative;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 32px;
+    color: rgba(200, 200, 200, 1);
+    font-size: 14px;
+  }
+
+  .ant-form-item-label {
+    white-space: nowrap;
+    text-align: right !important ;
+    min-width: 180px !important ;
+  }
 `;
 
 const NewPass = styled(Input.Password)`
