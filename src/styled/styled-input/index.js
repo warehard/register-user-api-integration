@@ -15,6 +15,7 @@ const StyledInput = styled(Input)`
         padding-right:10px;
         margin-top:5px;
         margin-bottom:5px;
+        outline:none;
     }
     span{
         color:crimson;

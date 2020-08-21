@@ -12,12 +12,7 @@ function App() {
   const location = useLocation();
   const [token, setToken] = useState(localStorage.getItem('token'));
 
-  const [test, setTest] = useState('')
   
-  const handleChange = (e) => {
-    setTest(e.target.value)
-    
-  }
 
   return (
     <div>
