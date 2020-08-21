@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Form, Input, Button } from 'antd';
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
-import styled from "styled-components";
+import StyledForm from '../../styled/styled-form'
+import StyledButton from '../../styled/styled-button'
+import StyledInput from '../../styled/styled-input'
 
 const layout = {
   labelCol: { span: 8 },
@@ -17,10 +18,22 @@ const Login = ({ setToken, setAuthentication}) => {
 
 
   const [loginError, setLoginError] = useState('')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const history = useHistory()
 
-  const onFinish = async ({username, password}) => {
-    
+  const handleUsername = (event) => {
+    setUsername(event.target.value)
+  }
+
+  const handlePassword = (event) => {
+    setPassword(event.target.value)
+  }
+
+  const onFinish = async (e) => {
+    e.preventDefault()
+    console.log(username,password)
+
     try{
     const response = await axios.post('https://ka-users-api.herokuapp.com/authenticate', {
       user: username, 
@@ -37,72 +50,44 @@ const Login = ({ setToken, setAuthentication}) => {
       setLoginError(error.response.data.error.user_authentication)
       
     }
+    
   };
 
-  const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
-  };
-  console.log(loginError)
+  
+  
   return(
-    <div>
-      <Form
-        {...layout}
-        name="basic"
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-      >
-        <Form.Item
-          label="Username"
-          name="username"
-          rules={[{ required: true, message: 'Please input your username!' }]}
-        >
-          <NewInput />
-        </Form.Item>
-
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
-        >
-          {/* <Input.Password /> */}
-          <NewPass />
-            
-        </Form.Item>
-        {<span>{loginError}</span>}
-        <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+    
+      <StyledForm handleSubmit={onFinish}>
+        <StyledInput
+          label='Username'
+          name='username'
+          rules={{required:true}}
+          value={username}
+          handleChange={handleUsername}
+          width='350px'
+          height='45px'
           
-        </Form.Item>
+          
+        />
+         <StyledInput
+          label='Username'
+          name='username'
+          rules={{required:true}}
+          value={password}
+          handleChange={handlePassword}
+          width='350px'
+          height='45px'
+          
+          
+        />
 
-        <Form.Item {...tailLayout}>
-          <NewButton type="primary" htmlType="submit">
-            Submit
-          </NewButton>
-        </Form.Item>
-      </Form>
-    </div>
+        <StyledButton 
+          buttonName='Login' 
+          width='245px' 
+          height='45px'/>
+      </StyledForm>
+    
   )
 }
 
 export default Login;
-
-const NewButton = styled(Button)`
-  background-color: #2794F0; 
-`;
-
-const NewInput = styled(Input)`
-  background-color: #1B1D1E;
-  color: whitesmoke;
-`;
-
-const NewPass = styled(Input.Password)`
-  background-color: #1B1D1E;
-  color: whitesmoke;
-
-  input {
-    background-color: #1B1D1E;
-    color: whitesmoke;
-  }
-`;
-
-// style={{background-color:'#181A1B'}}
