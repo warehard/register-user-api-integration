@@ -6,6 +6,7 @@ import "antd/dist/antd.css";
 
 import Router from './components/router'
 import StyledHeader from './styled/styled-header'
+import StyledLink from './styled/styled-link'
 
 function App() {
 
@@ -16,7 +17,10 @@ function App() {
 
   return (
     <div>
-      <StyledHeader />
+      <StyledHeader>
+          <StyledLink to='/'>Login</StyledLink>
+          <StyledLink to='/register'>Register</StyledLink>
+      </StyledHeader>
       <Router token={token} setToken={setToken}/>
     </div>
     )
