@@ -130,7 +130,10 @@ const NewTable = styled(Table)`
       background-color: goldenrod;
     }
 
-    ::selection{
+    .ant-table-row-level-0::selection,
+    .ant-table-row::selection,
+    .ant-select-selector::selection
+    {
       color: darkred;
       background-color: goldenrod;
       
