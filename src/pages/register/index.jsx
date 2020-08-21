@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Input, Button } from 'antd';
 import axios from 'axios';
 import styled from "styled-components";
+import Password from 'antd/lib/input/Password';
 
 // const defaultValues = {
 //   name: "",
@@ -45,7 +46,7 @@ const UserRegister = () => {
         name="name"
         rules={[{ required: true, message: 'Please input your Name!' }]}
       >
-        <Input />
+        <NewInput />
       </Form.Item>
 
       <Form.Item
@@ -53,7 +54,7 @@ const UserRegister = () => {
         name="username"
         rules={[{ required: true, message: 'Please input your username!' }]}
       >
-        <Input />
+        <NewInput />
       </Form.Item>
 
       <Form.Item
@@ -70,7 +71,7 @@ const UserRegister = () => {
           },
         ]}
       >
-        <Input />
+        <NewInput />
       </Form.Item>
 
       <Form.Item
@@ -84,7 +85,8 @@ const UserRegister = () => {
         ]}
         hasFeedback
       >
-        <Input.Password />
+        {/* <Input.Password /> */}
+        <NewPass />
       </Form.Item>
 
       <Form.Item
@@ -107,7 +109,8 @@ const UserRegister = () => {
           }),
         ]}
       >
-        <Input.Password />
+        {/* <Input.Password /> */}
+        <NewPass />
       </Form.Item>
 
       <NewButton type="primary" htmlType="submit">Register</NewButton>
@@ -119,4 +122,26 @@ export default UserRegister;
 
 const NewButton = styled(Button)`
   background-color: #2794F0; 
+`;
+
+const NewInput = styled(Input)`
+  background-color: #1B1D1E;
+  color: whitesmoke;
+`;
+
+const newFormItem = styled(Form.Item)`
+  span, p {
+    color: whitesmoke;
+  }
+  
+`;
+
+const NewPass = styled(Input.Password)`
+  background-color: #1B1D1E;
+  color: whitesmoke;
+
+  input {
+    background-color: #1B1D1E;
+    color: whitesmoke;
+  }
 `;

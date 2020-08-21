@@ -45,7 +45,7 @@ const Users = ({ token }) => {
   return(
     <Container>
     <h1 className="title" >Students</h1>
-    <Table columns={columns} dataSource={users} style={{width:'90%'}}/>
+    <NewTable columns={columns} dataSource={users} style={{width:'90%'}}/>
     </Container>
   )
 }
@@ -67,5 +67,73 @@ const Container = styled.div`
     align-items: center;
     margin: 1rem 5rem;
     font-size: 4rem;
+    color: white
   }
-`
+`;
+
+const NewTable = styled(Table)`
+  div, button, p, h1 {
+    background-color: #1B1D1E;
+    color: whitesmoke;
+  }
+
+  a {
+    color: #2794F0;
+  }
+
+  th, td, tr, li {
+    background-color: #1B1D1E;
+    color: #1B1D1E;
+  }
+
+  span {
+      background-color: #1B1D1E;
+      color: whitesmoke;
+    }
+
+    .ant-pagination-item-ellipsis {
+      background-color: #1B1D1E;
+      color: whitesmoke;
+    }
+
+    .ant-select-selector, .ant-table-cell {
+      background-color: #1B1D1E;
+      color: whitesmoke;
+    }
+
+    .ant-table-cell:hover {
+      background-color: goldenrod;
+    }
+
+    th:hover, td:hover {
+      color: darkred;
+      background-color: goldenrod;
+    }
+    
+    th::selection, td::selection {
+      color: darkred;
+      background-color: goldenrod;
+    }
+
+    .ant-select-selector:hover {
+      color: darkred;
+      background-color: goldenrod;
+    }
+
+    .ant-table-row:hover {
+      color: darkred;
+      background-color: goldenrod;
+    }
+    
+    .ant-table-row-level-0:hover {
+      color: darkred;
+      background-color: goldenrod;
+    }
+
+    ::selection{
+      color: darkred;
+      background-color: goldenrod;
+      
+    }
+  
+`;

@@ -57,7 +57,7 @@ const Login = ({ setToken, setAuthentication}) => {
           name="username"
           rules={[{ required: true, message: 'Please input your username!' }]}
         >
-          <Input />
+          <NewInput />
         </Form.Item>
 
         <Form.Item
@@ -65,7 +65,8 @@ const Login = ({ setToken, setAuthentication}) => {
           name="password"
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
-          <Input.Password />
+          {/* <Input.Password /> */}
+          <NewPass />
             
         </Form.Item>
         {<span>{loginError}</span>}
@@ -87,6 +88,21 @@ export default Login;
 
 const NewButton = styled(Button)`
   background-color: #2794F0; 
+`;
+
+const NewInput = styled(Input)`
+  background-color: #1B1D1E;
+  color: whitesmoke;
+`;
+
+const NewPass = styled(Input.Password)`
+  background-color: #1B1D1E;
+  color: whitesmoke;
+
+  input {
+    background-color: #1B1D1E;
+    color: whitesmoke;
+  }
 `;
 
 // style={{background-color:'#181A1B'}}
