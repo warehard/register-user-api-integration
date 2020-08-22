@@ -51,10 +51,9 @@ const Users = ({ token }) => {
   
   return(
     <div>
-      <StyledTable>
-      <StyledTHead columns={columns}/>
-      <StyledTBody data={users.slice(pageInitial,pageFinal)} columns={columns}/>
-      </StyledTable>
+      <StyledTable data={users.slice(pageInitial,pageFinal)} columns={columns} />
+      
+  
       <StyledPagination pageInitial={pageInitial} setPageInitial={setPageInitial} pageFinal={pageFinal} setPageFinal={setPageFinal} data={users}/>
     </div>
   )
