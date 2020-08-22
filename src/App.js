@@ -16,7 +16,7 @@ function App() {
   
 
   return (
-    <div>
+    <div className='app'>
       <StyledHeader>
           <StyledLink to='/'>Login</StyledLink>
           <StyledLink to='/register'>Register</StyledLink>

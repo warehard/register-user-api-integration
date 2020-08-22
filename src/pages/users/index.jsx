@@ -1,37 +1,44 @@
 import React, { useState, useEffect } from 'react'
-import { Table } from 'antd'
-import { getUsers } from './helper';
-import { Link } from 'react-router-dom';
-import styled from "styled-components";
 
+import { getUsers } from './helper';
+
+import StyledTable from '../../styled/styled-table'
+import StyledTHead from '../../styled/styled-thead'
+
+import StyledTBody from '../../styled/styled-tbody'
+import StyledPagination from '../../styled/styled-pagination';
 
 const Users = ({ token }) => {
 
   const columns = [
     {
       title: "id",
-      dataIndex: 'id',
+      key: 'id',
     },
     {
       title: "Name",
-      dataIndex: 'name',
+      key: 'name',
     },
     {
       title: "User",
-      dataIndex: 'user',
+      key: 'user',
     },
     {
       title: "Email",
-      dataIndex: 'email',
+      key: 'email',
     },
     {
       title: "Feedbacks",
-      dataIndex: 'feedbacks',
-      render: (_,user) => <Link to={`/users/feedbacks/${user.id}`} >Feedback</Link>
+      key: 'feedbacks',
+      link:true,
+      linkMessage:'Go to Feedbacks',
+      url:'/users/feedbacks/'
     }
   ]
 
   const [users, setUsers] = useState([])
+  const [pageInitial, setPageInitial] = useState(0)
+  const [pageFinal, setPageFinal] = useState(10)
 
   useEffect(  () =>{
     const data = async () => {
@@ -43,97 +50,15 @@ const Users = ({ token }) => {
   users.map(e=> e.key = e.id);
   
   return(
-    <Container>
-    <h1 className="title" >Students</h1>
-    <NewTable columns={columns} dataSource={users} style={{width:'90%'}}/>
-    </Container>
+    <div>
+      <StyledTable>
+      <StyledTHead columns={columns}/>
+      <StyledTBody data={users.slice(pageInitial,pageFinal)} columns={columns}/>
+      </StyledTable>
+      <StyledPagination pageInitial={pageInitial} setPageInitial={setPageInitial} pageFinal={pageFinal} setPageFinal={setPageFinal} data={users}/>
+    </div>
   )
 }
 
 export default Users;
 
-const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: center;
-
-  .title {
-    width: 90%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 1rem 5rem;
-    font-size: 4rem;
-    color: white
-  }
-`;
-
-const NewTable = styled(Table)`
-  div, button, p, h1 {
-    background-color: #1B1D1E;
-    color: whitesmoke;
-  }
-
-  a {
-    color: #2794F0;
-  }
-
-  th, td, tr, li {
-    background-color: #1B1D1E;
-    color: #1B1D1E;
-  }
-
-  span {
-      background-color: #1B1D1E;
-      color: whitesmoke;
-    }
-
-    .ant-pagination-item-ellipsis {
-      background-color: #1B1D1E;
-      color: whitesmoke;
-    }
-
-    .ant-select-selector, .ant-table-cell {
-      background-color: #1B1D1E;
-      color: whitesmoke;
-    }
-
-    .ant-table-cell:hover {
-      background-color: goldenrod;
-    }
-
-    th:hover, td:hover {
-      color: darkred;
-      background-color: goldenrod;
-    }
-    
-    th::selection, td::selection {
-      color: darkred;
-      background-color: goldenrod;
-    }
-
-    .ant-select-selector:hover {
-      color: darkred;
-      background-color: goldenrod;
-    }
-
-    .ant-table-row:hover {
-      color: darkred;
-      background-color: goldenrod;
-    }
-    
-    .ant-table-row-level-0:hover {
-      color: darkred;
-      background-color: goldenrod;
-    }
-
-    ::selection{
-      color: darkred;
-      background-color: goldenrod;
-      
-    }
-  
-`;

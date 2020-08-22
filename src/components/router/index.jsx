@@ -20,7 +20,7 @@ const Router = ({ token, setToken }) => {
 
 
   return (
-    <>
+    <div className='route'>
       {
         authentication ?
           <Switch>
@@ -73,7 +73,7 @@ const Router = ({ token, setToken }) => {
           </Switch>
       }
 
-    </>
+    </div>
 
   )
 }
