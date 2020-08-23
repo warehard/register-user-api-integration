@@ -21,6 +21,10 @@ const StyledInput = styled(Input)`
         color:crimson;
     }
 
+    label{
+        font-size: 14px;
+    }
+
 `
 
 export default StyledInput

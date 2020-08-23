@@ -34,7 +34,7 @@ const Login = ({ setToken, setAuthentication}) => {
   }
 
   useEffect(() => {
-
+  
   }, [username, password])
 
   const onFinish = async (e) => {
@@ -81,7 +81,7 @@ const Login = ({ setToken, setAuthentication}) => {
         <StyledInput
           label='Username'
           name='username'
-          rules={{required:true}}
+          required={true}
           value={username}
           handleChange={handleUsername}
           width='350px'
@@ -92,7 +92,7 @@ const Login = ({ setToken, setAuthentication}) => {
          <StyledInput
           label='Password'
           name='password'
-          rules={{required:true}}
+          required={true}
           value={password}
           handleChange={handlePassword}
           width='350px'

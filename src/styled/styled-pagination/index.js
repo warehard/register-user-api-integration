@@ -13,8 +13,15 @@ const StyledPagination = styled(Pagination)`
         width:70%;
         display:flex;
         justify-content:center;
+        font-family: 'Red Hat Text', sans-serif;
         font-size:20px;
+        font-weight:500;
         color: #922ea3;
+    }
+
+    p{
+        margin:0;
+        padding-top:2px;
     }
     button{
         width:15%;

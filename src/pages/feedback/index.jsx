@@ -1,31 +1,36 @@
 import React, { useEffect, useState } from 'react'
-import { Table, Button } from 'antd'
 import { useParams, useHistory } from 'react-router-dom';
 import styled from "styled-components";
 import { getUser } from './helper';
+import StyledTable from '../../styled/styled-table'
+import StyledPagination from '../../styled/styled-pagination'
+import StyledButton from '../../styled/styled-button';
 
 const Feedback = ({ token }) => {
   
   const history = useHistory()
   const { id } = useParams();
   const [user, setUser] = useState([])
+  const [pageInitial, setPageInitial] = useState(0)
+  const [pageFinal, setPageFinal] = useState(10)
+
 
   const columns = [
     {
       title: "id",
-      dataIndex: 'id',
+      key: 'id',
     },
     {
       title: "Name",
-      dataIndex: 'name',
+      key: 'name',
     },
     {
       title: "Comment",
-      dataIndex: 'comment',
+      key: 'comment',
     },
     {
       title: "Grade",
-      dataIndex: 'grade',
+      key: 'grade',
     },
     
   ]
@@ -45,11 +50,9 @@ const Feedback = ({ token }) => {
 
   return(
     <Container>
-      <h1>Feedback</h1>
-      <Table columns={columns} dataSource={user} style={{width:'90%'}}/>
-      <Button type="primary" onClick={() => handleClick(id)}>
-            New Feedback
-          </Button>
+      <StyledTable data={user.slice(pageInitial, pageFinal)} columns={columns} />
+      <StyledPagination pageInitial={pageInitial} setPageInitial={setPageInitial} pageFinal={pageFinal} setPageFinal={setPageFinal} data={user}/>
+      <StyledButton handleClick={() => handleClick(id)} buttonName='New Feedback' width='200px' height='50px'/>
     </Container>
   )
 }

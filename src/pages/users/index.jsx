@@ -3,9 +3,6 @@ import React, { useState, useEffect } from 'react'
 import { getUsers } from './helper';
 
 import StyledTable from '../../styled/styled-table'
-import StyledTHead from '../../styled/styled-thead'
-
-import StyledTBody from '../../styled/styled-tbody'
 import StyledPagination from '../../styled/styled-pagination';
 
 const Users = ({ token }) => {

@@ -30,7 +30,7 @@ const Pagination = ({className, pageInitial ,setPageInitial, pageFinal ,setPageF
     return(
         <div className={className}>
             <button onClick={handlePrevious} className='previousButton'>&lt;</button>
-            <div>Page {page}/{totalPages}</div>
+            <div><p>Page {page}/{totalPages}</p></div>
             <button onClick={handleNext} className='nextButton'>&gt;</button>
         </div>
     )

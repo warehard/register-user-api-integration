@@ -11,17 +11,29 @@ import StyledFooter from './styled/styled-footer'
 
 function App() {
 
-  const location = useLocation();
+  const { pathname } = useLocation();
   const [token, setToken] = useState(localStorage.getItem('token'));
-
+  
   
 
   return (
     <div className='app'>
       <StyledHeader>
-          
-          <StyledLink to='/' ><span data-hover='Login'>Login</span></StyledLink>
-          <StyledLink to='/register'><span data-hover='Register'>Register</span></StyledLink>
+        <StyledLink to={pathname === '/' || pathname === '/register' ? '/' : '/users'}>
+          <span
+            data-hover={pathname === '/' ? 'Login' :'Alunos' } 
+            >
+              {pathname === '/' ? 'Login' :  'Alunos'}
+          </span>
+        </StyledLink>
+        <StyledLink 
+          to={pathname === '/' || pathname === '/register' ? '/register' : '/'}>
+          <span 
+            data-hover={pathname === '/' || pathname === '/register' ? 'Register' : 'Logout'}
+             >
+              {pathname === '/' || pathname === '/register' ? 'Register' : 'Logout'}
+          </span>
+        </StyledLink>
       </StyledHeader>
       <Router token={token} setToken={setToken}/>
       <StyledFooter>Desenvolvido por Augusto Pietroski e Eduardo Magno</StyledFooter>

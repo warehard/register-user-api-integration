@@ -37,7 +37,9 @@ const StyledLink = styled(Link)`
 		-webkit-transform: translateY(-100%);
 		-moz-transform: translateY(-100%);
 		transform: translateY(-100%);
-	}
+    }
+    
+    
 
 `
 
