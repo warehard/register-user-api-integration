@@ -3,6 +3,7 @@ import axios from 'axios';
 import StyledForm from '../../styled/styled-form'
 import StyledInput from '../../styled/styled-input'
 import StyledButton from '../../styled/styled-button'
+import arrowForward from '../../images/icons/arrow_forward-black-18dp.svg'
 
 const defaultValues = {
   name: '',
@@ -24,13 +25,15 @@ const UserRegister = () => {
   const [formValues, setFormValues] = useState(defaultValues);
   const [formValueErrors, setFormValueErrors] = useState(defaultError);
 
+  const nameErrors = '';
+
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
-  const [nameError, setNameError] = useState(defaultError);
+  const [nameError, setNameError] = useState("");
   const [usernameError, setUsernameError] = useState(defaultError);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState(defaultError);
@@ -59,6 +62,14 @@ const UserRegister = () => {
   const verifyName = () => {
     const regexName = /\s/;
     return !regexName.test(name) && name.length > 0;
+
+    /* if(!regexName.test(name) && name.length > 0) {
+      return true;
+    } else {
+      // setNameError("invalid name format");
+      nameErrors = "invalid name format";
+      return false;
+    } */
   }
 
   const verifyUsername = () => {
@@ -67,8 +78,8 @@ const UserRegister = () => {
   }
 
   const verifyEmail = () => {
-    const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2, 5}$/i;
-    return !regexEmail.test(email);
+    const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+    return regexEmail.test(email) && email.length > 0;
   }
 
   const verifyPassword = () => {
@@ -79,49 +90,11 @@ const UserRegister = () => {
     return confirmPassword === password;
   }
 
-  const verify = (e) => {
-    (verifyName() &&
-    verifyUsername() &&
-    verifyEmail() &&
-    verifyPassword() &&
-    verifyConfirmPassword())
-
-    ?
-
-    console.log(
-      "State Values",
-      name, 
-      username, 
-      email, 
-      password, 
-      confirmPassword,
-      "Boolean Values",
-      verifyName(),
-      verifyUsername(),
-      verifyEmail(),
-      verifyPassword(),
-      verifyConfirmPassword()
-    )
-
-    :
-    
-    console.log(
-      "Boolean Values",
-      verifyName(),
-      verifyUsername(),
-      verifyEmail(),
-      verifyPassword(),
-      verifyConfirmPassword(),
-      "Invalid Email Format"
-    )
-
-    // onFinish();
+  const verify = () => {
+    return(verifyName() && verifyUsername() && verifyEmail() && verifyPassword() && verifyConfirmPassword())
   }
 
-  
-
-  const onFinish = async event => {
-
+  const registerUserFetch = async () => {
     const response = await axios.post('https://ka-users-api.herokuapp.com/users', {
       "headers": { 'content-type': 'application/json' },
       "user": {
@@ -131,55 +104,41 @@ const UserRegister = () => {
         "password": password,
         "password_confirmation": confirmPassword
       }
-    }).catch((err) => console.log(err));
+    }).catch((err) => console.log(err)).then(resp => console.log(resp));
+  }
+
+  const onFinish = async event => {
+
+    event.preventDefault();
+
+    // console.log(verify(), verifyName(), verifyUsername(), verifyEmail(), verifyPassword(), verifyConfirmPassword(), email);
+
+    verify() && await registerUserFetch();
   };
 
   return (
 
 
 
-    <StyledForm>
-      <label for="name" >*Name: </label>
-      {/* <StyledInput name={name} onChange={""} value={""}  /> */}
-      <input type="text" name={name} onChange={handleFormNameChange} value={name} />
-
-      <label for="username" >*Username: </label>
-      {/* <StyledInput name={name} onChange={""} value={""}  /> */}
-      <input type="text" name={name} onChange={handleFormUsernameChange} value={username} />
-
-      <label for="email" >*Email: </label>
-      {/* <StyledInput name={name} onChange={""} value={""}  /> */}
-      <input type="text" name={name} onChange={handleFormEmailChange} value={email} />
-
-      <label for="password" >*Password: </label>
-      {/* <StyledInput name={name} onChange={""} value={""}  /> */}
-      <input type="password" name={name} onChange={handleFormPasswordChange} value={password} />
-
-      <label for="conirmation" >*Password Confirmation: </label>
-      {/* <StyledInput name={name} onChange={""} value={""}  /> */}
-      <input type="password" name={name} onChange={handleFormPasswordConfirmationChange} value={confirmPassword} />
-      
-      <button onClick={(e) => {e.preventDefault(); verify();}} >Submit</button>
-
-      {/* <div className={className}>
+    <StyledForm handleSubmit={onFinish} titleSize='60px'>
       <h1>Register</h1>
-      <label for="name" >Name: </label>
-      <input name={name} onChange={handleChange} value={value} />
-      {error && <span>{message}</span>} <br />
-      <label for="username" >Username: </label>
-      <input name={name} onChange={handleChange} value={value} />
-      {error && <span>{message}</span>} <br />
-      <label for="email" >Email: </label>
-      <input name={name} onChange={handleChange} value={value} />
-      {error && <span>{message}</span>} <br />
-      <label for="password" >Password: </label>
-      <input name={name} onChange={handleChange} value={value} />
-      {error && <span>{message}</span>} <br />
-      <label for="conirmation" >Password Confirmation: </label>
-      <input name={name} onChange={handleChange} value={value} />
-      {error && <span>{message}</span>}
-      <button onClick={(e) => e.preventDefault()} >Submit</button>
-      </div> */}
+
+      <StyledInput required={true} label="Name" name="name" handleChange={handleFormNameChange} value={name}  />
+
+      <StyledInput required={true} label="Username" name="username" handleChange={handleFormUsernameChange} value={username}  />
+
+      <StyledInput required={true} label="Email" name="texto" handleChange={handleFormEmailChange} value={email}  />
+
+      <StyledInput required={true} label="Password" name="password" handleChange={handleFormPasswordChange} value={password}  />
+
+      <StyledInput required={true} label="Confirm Password" name="confirmPassword" handleChange={handleFormPasswordConfirmationChange} value={confirmPassword}  />
+
+      <StyledButton 
+          buttonName='Register' 
+          width='245px' 
+          height='45px'
+          buttonIcon={arrowForward}
+          />
 
     </StyledForm>
     

@@ -40,7 +40,7 @@ time, mark, audio, video {
   margin:1.25rem 0.625rem 1.25rem 0.625rem;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
 }
