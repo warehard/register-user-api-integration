@@ -13,14 +13,19 @@ function App() {
   const location = useLocation();
   const [token, setToken] = useState(localStorage.getItem('token'));
 
-  
-
   return (
     <div className='app'>
-      <StyledHeader>
+      {!token ? 
+        <StyledHeader>
           <StyledLink to='/'>Login</StyledLink>
           <StyledLink to='/register'>Register</StyledLink>
-      </StyledHeader>
+        </StyledHeader>
+      :
+        <StyledHeader>
+          <StyledLink to='/'>Logout</StyledLink>
+          <StyledLink to='/users'>Students</StyledLink>
+        </StyledHeader>
+      }
       <Router token={token} setToken={setToken}/>
     </div>
     )

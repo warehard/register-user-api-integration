@@ -4,7 +4,7 @@ const Input = ({label, name, rules, handleChange, value, width, height, classNam
     
     return(
         <div className={className}>
-            <label htmlFor={name}>{rules.required && '*'}{label}</label>
+            {/* <label htmlFor={name}>{rules.required && '*'}{label}</label> */}
             <input name={name} onChange={handleChange} value={value}/>
             {error && <span>{message}</span>}
         </div>
