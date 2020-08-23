@@ -13,7 +13,6 @@ const defaultValues = {
 }
 
 const defaultError = {
-  inputName: '',
   errorStatus: false,
   errorValue: '',
   message: ''
@@ -21,101 +20,80 @@ const defaultError = {
 
 const UserRegister = () => {
 
-  const [formValues, setFormValues] = useState(defaultValues);
-  const [formValueErrors, setFormValueErrors] = useState(defaultError);
-
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
-  const [nameError, setNameError] = useState(defaultError);
-  const [usernameError, setUsernameError] = useState(defaultError);
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState(defaultError);
-  const [confirmPasswordError, setConfirmPasswordError] = useState(defaultError);
+  const [nameError, setNameError] = useState('');
+  const [usernameError, setUsernameError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [confirmPasswordError, setConfirmPasswordError] = useState('');
+
+
+
 
   const handleFormNameChange = ({target: {value}}) => {
     setName(value)
+    console.log(name);
   }
 
   const handleFormUsernameChange = ({target: {value}}) => {
     setUsername(value)
+    console.log(username);
   }
 
   const handleFormEmailChange = ({target: {value}}) => {
     setEmail(value)
+    console.log(email);
   }
 
   const handleFormPasswordChange = ({target: {value}}) => {
     setPassword(value)
+    console.log(password);
   }
 
   const handleFormPasswordConfirmationChange = ({target: {value}}) => {
     setConfirmPassword(value)
+    console.log(confirmPassword);
   }
 
   const verifyName = () => {
     const regexName = /\s/;
-    return !regexName.test(name) && name.length > 0;
+    return !regexName.test(name);
   }
 
   const verifyUsername = () => {
-    const regexUsername = /\s/;
-    return !regexUsername.test(username) && name.length > 0;
+    const regexName = /\s/;
+    return !regexName.test(name);
   }
 
   const verifyEmail = () => {
-    const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2, 5}$/i;
-    return !regexEmail.test(email);
+    const regexName = /\s/;
+    return !regexName.test(name);
   }
 
   const verifyPassword = () => {
-    return password.length > 2;
+    const regexName = /\s/;
+    return !regexName.test(name);
   }
 
   const verifyConfirmPassword = () => {
-    return confirmPassword === password;
+    const regexName = /\s/;
+    return !regexName.test(name);
   }
 
   const verify = (e) => {
-    (verifyName() &&
-    verifyUsername() &&
-    verifyEmail() &&
-    verifyPassword() &&
-    verifyConfirmPassword())
+    verifyName &&
+    verifyUsername &&
+    verifyEmail &&
+    verifyEmail &&
+    verifyPassword &&
+    verifyConfirmPassword &&
 
-    ?
-
-    console.log(
-      "State Values",
-      name, 
-      username, 
-      email, 
-      password, 
-      confirmPassword,
-      "Boolean Values",
-      verifyName(),
-      verifyUsername(),
-      verifyEmail(),
-      verifyPassword(),
-      verifyConfirmPassword()
-    )
-
-    :
-    
-    console.log(
-      "Boolean Values",
-      verifyName(),
-      verifyUsername(),
-      verifyEmail(),
-      verifyPassword(),
-      verifyConfirmPassword(),
-      "Invalid Email Format"
-    )
-
-    // onFinish();
+    onFinish();
   }
 
   
@@ -140,24 +118,22 @@ const UserRegister = () => {
 
     <StyledForm>
       <label for="name" >*Name: </label>
-      {/* <StyledInput name={name} onChange={""} value={""}  /> */}
+      <StyledInput name={name} onChange={""} value={""} />
       <input type="text" name={name} onChange={handleFormNameChange} value={name} />
 
       <label for="username" >*Username: </label>
-      {/* <StyledInput name={name} onChange={""} value={""}  /> */}
+      <StyledInput name={name} onChange={""} value={""}  />
       <input type="text" name={name} onChange={handleFormUsernameChange} value={username} />
 
       <label for="email" >*Email: </label>
-      {/* <StyledInput name={name} onChange={""} value={""}  /> */}
+      <StyledInput name={name} onChange={""} value={""}  />
       <input type="text" name={name} onChange={handleFormEmailChange} value={email} />
 
       <label for="password" >*Password: </label>
-      {/* <StyledInput name={name} onChange={""} value={""}  /> */}
-      <input type="password" name={name} onChange={handleFormPasswordChange} value={password} />
+      <StyledInput name={name} onChange={""} value={""}  />
 
       <label for="conirmation" >*Password Confirmation: </label>
-      {/* <StyledInput name={name} onChange={""} value={""}  /> */}
-      <input type="password" name={name} onChange={handleFormPasswordConfirmationChange} value={confirmPassword} />
+      <StyledInput name={name} onChange={""} value={""}  />
       
       <button onClick={(e) => {e.preventDefault(); verify();}} >Submit</button>
 

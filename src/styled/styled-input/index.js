@@ -20,11 +20,6 @@ const StyledInput = styled(Input)`
     span{
         color:crimson;
     }
-    label {
-        text-align: right;
-        align-self: flex-start;
-        font-size: 24px;
-    }
 `;
 
 export default StyledInput

@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import StyledForm from '../../styled/styled-form'
 import StyledButton from '../../styled/styled-button'
 import StyledInput from '../../styled/styled-input'
+import arrowForward from '../../images/icons/arrow_forward-black-18dp.svg'
 
 const layout = {
   labelCol: { span: 8 },
@@ -103,7 +104,9 @@ const Login = ({ setToken, setAuthentication}) => {
         <StyledButton 
           buttonName='Login' 
           width='245px' 
-          height='45px'/>
+          height='45px'
+          buttonIcon={arrowForward}
+          />
       </StyledForm>
     
   )

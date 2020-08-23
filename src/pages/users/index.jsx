@@ -50,9 +50,8 @@ const Users = ({ token }) => {
   users.map(e=> e.key = e.id);
   
   return(
-    <div>
+    <div className='users'>
       <StyledTable data={users.slice(pageInitial,pageFinal)} columns={columns} />
-      
       <StyledPagination pageInitial={pageInitial} setPageInitial={setPageInitial} pageFinal={pageFinal} setPageFinal={setPageFinal} data={users}/>
     </div>
   )
