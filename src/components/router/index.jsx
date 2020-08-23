@@ -20,10 +20,11 @@ const Router = ({ token, setToken }) => {
 
 
   return (
-    <>
+    <div className='route'>
       {
         authentication ?
           <Switch>
+
             <Route path='/users/feedbacks/:id/new'>
               <NewFeeback token={token}/>
             </Route>
@@ -33,39 +34,41 @@ const Router = ({ token, setToken }) => {
             </Route>
 
             <Route path='/users'>
-              <div className="users" style={{ width: '100%', margin: '0' }} >
+              
                 <Users token={token} />
-              </div>
+              
             </Route>
 
             <Route path='/register'>
-              <div className="register-login" >
+              <div>
                 <UserRegister />
               </div>
             </Route>
 
             <Route exact path='/'>
-              <div className="register-login" >
+              <div>
                 <Login setAuthentication={setAuthentication} setToken={setToken} />
               </div>
             </Route>
+            
           </Switch>
           :
           <Switch>
+
             <Route path='/users'>
-              <div className="register-login" >
+              <div>
                 <img src={errorImage} alt="404 Error" />
               </div>
             </Route>
 
             <Route path='/register'>
-              <div className="register-login" >
+              <div>
                 <UserRegister />
               </div>
             </Route>
 
             <Route exact path='/'>
-              <div className="register-login" >
+              <div>
                 <Login setAuthentication={setAuthentication} setToken={setToken} />
               </div>
             </Route>
@@ -73,7 +76,7 @@ const Router = ({ token, setToken }) => {
           </Switch>
       }
 
-    </>
+    </div>
 
   )
 }

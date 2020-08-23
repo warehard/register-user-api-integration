@@ -21,58 +21,26 @@ time, mark, audio, video {
   box-sizing: border-box;
 } */
 
-
-.App {
-  text-align: center;
-
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-/*   display: flex;
+.app{
+  
+  height: 100vh;
+  display:flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center; */
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.register-login {
-  min-height: 100vh;
+.route{
+  height:80vh;
+  display: flex;
+  justify-content: center;
+  flex-grow: 2;
+  background-color: #f7f7f7;
+}
+
+.users{
+  margin:1.25rem 0.625rem 1.25rem 0.625rem;
   display: flex;
   flex-direction: column;
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: center;
-}
-
-.users {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  justify-content: space-between;
 }

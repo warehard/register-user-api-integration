@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
-import { Form, Input, Button } from 'antd';
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
-import styled from "styled-components";
+import StyledForm from '../../styled/styled-form'
+import StyledButton from '../../styled/styled-button'
+import StyledInput from '../../styled/styled-input'
+import arrowForward from '../../images/icons/arrow_forward-black-18dp.svg'
 
 const layout = {
   labelCol: { span: 8 },
@@ -17,108 +19,97 @@ const Login = ({ setToken, setAuthentication }) => {
 
 
   const [loginError, setLoginError] = useState('')
+  const [userError, setUserError] = useState(false)
+  const [passwordError, setPasswordError] = useState(false)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const history = useHistory()
 
-  const onFinish = async ({ username, password }) => {
+  const handleUsername = (event) => {
+    setUsername(event.target.value)
+  }
 
-    try {
-      const response = await axios.post('https://ka-users-api.herokuapp.com/authenticate', {
-        user: username,
-        password: password
-      })
+  const handlePassword = (event) => {
+    setPassword(event.target.value)
+  }
 
-      setToken(response.data.auth_token)
-      setAuthentication(true)
-      localStorage.setItem('token', response.data.auth_token)
-      history.push('/users')
+  useEffect(() => {
+
+  }, [username, password])
+
+  const onFinish = async (e) => {
+    e.preventDefault()
+    
+    if (username.length === 0) {
+      setUserError(true)
+    }else{
+      setUserError(false)
     }
-    catch (error) {
-      setAuthentication(false)
-      setLoginError(error.response.data.error.user_authentication)
-
+    if (password.length <= 3) {
+      setPasswordError(true)
+    }else{
+      setPasswordError(false)
+    }
+    if ( username.length > 0 && password.length > 3) {
+      setUserError(false)
+      setPasswordError(false)
+      try{
+        const response = await axios.post('https://ka-users-api.herokuapp.com/authenticate', {
+          user: username, 
+          password: password
+        })
+    
+        setToken(response.data.auth_token)
+        setAuthentication(true)
+        localStorage.setItem('token', response.data.auth_token)
+        history.push('/users')
+        }
+        catch(error) { 
+          setAuthentication(false)
+          setLoginError(error.response.data.error.user_authentication)
+          
+        }
     }
   };
 
-  const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
-  };
-  console.log(loginError)
-  return (
-    <div>
-      <Form
-        {...layout}
-        name="basic"
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-      >
-        <NewFormItem
-          label="Username"
-          name="username"
-          rules={[{ required: true, message: 'Please input your username!' }]}
-        >
-          <NewInput />
-        </NewFormItem>
+  console.log(username.length)
+  
+  return(
 
-        <NewFormItem
-          label="Password"
-          name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
-        >
-          {/* <Input.Password /> */}
-          <NewPass />
-
-        </NewFormItem>
-        {<span>{loginError}</span>}
-        <NewFormItem {...tailLayout} name="remember" valuePropName="checked">
-
-        </NewFormItem>
-
-        <NewFormItem {...tailLayout}>
-          <NewButton type="primary" htmlType="submit">
-            Submit
-          </NewButton>
-        </NewFormItem>
-      </Form>
-    </div>
+      <StyledForm handleSubmit={onFinish} titleSize='60px'>
+        <h1>Welcome</h1>
+        <StyledInput
+          label='Username'
+          name='username'
+          rules={{required:true}}
+          value={username}
+          handleChange={handleUsername}
+          width='350px'
+          height='45px'
+          error={userError}
+          message='Usuário Inválido'
+        />
+         <StyledInput
+          label='Password'
+          name='password'
+          rules={{required:true}}
+          value={password}
+          handleChange={handlePassword}
+          width='350px'
+          height='45px'
+          error={passwordError}
+          message='Senha inválida'
+        />
+        <span>{loginError}</span>
+        <StyledButton 
+          buttonName='Login' 
+          width='245px' 
+          height='45px'
+          buttonIcon={arrowForward}
+          />
+      </StyledForm>
+    
   )
 }
 
 export default Login;
-
-const NewButton = styled(Button)`
-  background-color: #2794F0; 
-`;
-
-const NewInput = styled(Input)`
-  background-color: #1B1D1E;
-  color: whitesmoke;
-`;
-
-const NewPass = styled(Input.Password)`
-  background-color: #1B1D1E;
-  color: whitesmoke;
-
-  input {
-    background-color: #1B1D1E;
-    color: whitesmoke;
-  }
-`;
-
-const NewFormItem = styled(Form.Item)`
- 
-
- .ant-form-item-label > label {
-    position: relative;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    -ms-flex-align: center;
-    align-items: center;
-    height: 32px;
-    color: rgba(200, 200, 200, 1);
-    font-size: 14px;
-  }
-  
-`;
-
-// style={{background-color:'#181A1B'}}

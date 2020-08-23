@@ -1,160 +1,150 @@
-import React from 'react';
-import { Form, Input, Button } from 'antd';
+import React, { useState } from 'react';
 import axios from 'axios';
-import styled from "styled-components";
-import Password from 'antd/lib/input/Password';
+import StyledForm from '../../styled/styled-form'
+import StyledInput from '../../styled/styled-input'
+import StyledButton from '../../styled/styled-button'
+import arrowForward from '../../images/icons/arrow_forward-black-18dp.svg'
 
-// const defaultValues = {
-//   name: "",
-//   username: "",
-//   email: "",
-//   password: "",
-//   confirm: ""
-// }
+const defaultValues = {
+  name: '',
+  username: '',
+  email: '',
+  password: '',
+  confirmPassword: ''
+}
+
+const defaultError = {
+  inputName: '',
+  errorStatus: false,
+  errorValue: '',
+  message: ''
+}
 
 const UserRegister = () => {
 
-  const layout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
-  };
+  const [formValues, setFormValues] = useState(defaultValues);
+  const [formValueErrors, setFormValueErrors] = useState(defaultError);
 
-  const onFinish = async values => {
+  const nameErrors = '';
 
-    console.log('Success:', values);
+  const [name, setName] = useState('')
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
 
+  const [nameError, setNameError] = useState("");
+  const [usernameError, setUsernameError] = useState(defaultError);
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState(defaultError);
+  const [confirmPasswordError, setConfirmPasswordError] = useState(defaultError);
+
+  const handleFormNameChange = ({target: {value}}) => {
+    setName(value)
+  }
+
+  const handleFormUsernameChange = ({target: {value}}) => {
+    setUsername(value)
+  }
+
+  const handleFormEmailChange = ({target: {value}}) => {
+    setEmail(value)
+  }
+
+  const handleFormPasswordChange = ({target: {value}}) => {
+    setPassword(value)
+  }
+
+  const handleFormPasswordConfirmationChange = ({target: {value}}) => {
+    setConfirmPassword(value)
+  }
+
+  const verifyName = () => {
+    const regexName = /\s/;
+    return !regexName.test(name) && name.length > 0;
+
+    /* if(!regexName.test(name) && name.length > 0) {
+      return true;
+    } else {
+      // setNameError("invalid name format");
+      nameErrors = "invalid name format";
+      return false;
+    } */
+  }
+
+  const verifyUsername = () => {
+    const regexUsername = /\s/;
+    return !regexUsername.test(username) && name.length > 0;
+  }
+
+  const verifyEmail = () => {
+    const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+    return regexEmail.test(email) && email.length > 0;
+  }
+
+  const verifyPassword = () => {
+    return password.length > 2;
+  }
+
+  const verifyConfirmPassword = () => {
+    return confirmPassword === password;
+  }
+
+  const verify = () => {
+    return(verifyName() && verifyUsername() && verifyEmail() && verifyPassword() && verifyConfirmPassword())
+  }
+
+  const registerUserFetch = async () => {
     const response = await axios.post('https://ka-users-api.herokuapp.com/users', {
       "headers": { 'content-type': 'application/json' },
       "user": {
-        "name": values.name,
-        "user": values.username,
-        "email": values.email,
-        "password": values.password,
-        "password_confirmation": values.confirm
+        "name": name,
+        "user": username,
+        "email": email,
+        "password": password,
+        "password_confirmation": confirmPassword
       }
-    }).catch((err) => console.log(err));
+    }).catch((err) => console.log(err)).then(resp => console.log(resp));
+  }
+
+  const onFinish = async event => {
+
+    event.preventDefault();
+
+    // console.log(verify(), verifyName(), verifyUsername(), verifyEmail(), verifyPassword(), verifyConfirmPassword(), email);
+
+    verify() && await registerUserFetch();
   };
 
   return (
-    <Form  {...layout}
-      name="basic"
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-    >
-      <NewFormItem
-        label="Name"
-        name="name"
-        rules={[{ required: true, message: 'Please input your Name!' }]}
-      >
-        <NewInput />
-      </NewFormItem>
 
-      <NewFormItem
-        label="Username"
-        name="username"
-        rules={[{ required: true, message: 'Please input your username!' }]}
-      >
-        <NewInput />
-      </NewFormItem>
 
-      <NewFormItem
-        name="email"
-        label="E-mail"
-        rules={[
-          {
-            type: 'email',
-            message: 'The input is not valid E-mail!',
-          },
-          {
-            required: true,
-            message: 'Please input your E-mail!',
-          },
-        ]}
-      >
-        <NewInput />
-      </NewFormItem>
 
-      <NewFormItem
-        name="password"
-        label="Password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your password!',
-          },
-        ]}
-        hasFeedback
-      >
-        {/* <Input.Password /> */}
-        <NewPass />
-      </NewFormItem>
+    <StyledForm handleSubmit={onFinish} titleSize='60px'>
+      <h1>Register</h1>
 
-      <NewFormItem
-        name="confirm"
-        label="Confirm Password"
-        dependencies={['password']}
-        hasFeedback
-        rules={[
-          {
-            required: true,
-            message: 'Please confirm your password!',
-          },
-          ({ getFieldValue }) => ({
-            validator(rule, value) {
-              if (!value || getFieldValue('password') === value) {
-                return Promise.resolve();
-              }
-              return Promise.reject('The two passwords that you entered do not match!');
-            },
-          }),
-        ]}
-      >
-        {/* <Input.Password /> */}
-        <NewPass />
-      </NewFormItem>
+      <StyledInput required={true} label="Name" name="name" handleChange={handleFormNameChange} value={name}  />
 
-      <NewButton type="primary" htmlType="submit">Register</NewButton>
-    </Form>
+      <StyledInput required={true} label="Username" name="username" handleChange={handleFormUsernameChange} value={username}  />
+
+      <StyledInput required={true} label="Email" name="texto" handleChange={handleFormEmailChange} value={email}  />
+
+      <StyledInput required={true} label="Password" name="password" handleChange={handleFormPasswordChange} value={password}  />
+
+      <StyledInput required={true} label="Confirm Password" name="confirmPassword" handleChange={handleFormPasswordConfirmationChange} value={confirmPassword}  />
+
+      <StyledButton 
+          buttonName='Register' 
+          width='245px' 
+          height='45px'
+          buttonIcon={arrowForward}
+          />
+
+    </StyledForm>
+    
+
   )
 }
 
 export default UserRegister;
 
-const NewButton = styled(Button)`
-  background-color: #2794F0; 
-`;
-
-const NewInput = styled(Input)`
-  background-color: #1B1D1E;
-  color: whitesmoke;
-`;
-
-const NewFormItem = styled(Form.Item)`
-  
-  .ant-form-item-label > label {
-    position: relative;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    -ms-flex-align: center;
-    align-items: center;
-    height: 32px;
-    color: rgba(200, 200, 200, 1);
-    font-size: 14px;
-  }
-
-  .ant-form-item-label {
-    white-space: nowrap;
-    text-align: right !important ;
-    min-width: 180px !important ;
-  }
-`;
-
-const NewPass = styled(Input.Password)`
-  background-color: #1B1D1E;
-  color: whitesmoke;
-
-  input {
-    background-color: #1B1D1E;
-    color: whitesmoke;
-  }
-`;
