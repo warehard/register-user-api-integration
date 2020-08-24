@@ -24,6 +24,7 @@ const Router = ({ token, setToken }) => {
       {
         authentication ?
           <Switch>
+
             <Route path='/users/feedbacks/:id/new'>
               <NewFeeback token={token}/>
             </Route>
@@ -49,9 +50,11 @@ const Router = ({ token, setToken }) => {
                 <Login setAuthentication={setAuthentication} setToken={setToken} authentication={authentication}/>
               
             </Route>
+            
           </Switch>
           :
           <Switch>
+
             <Route path='/users'>
               
                 <img src={errorImage} alt="404 Error" />

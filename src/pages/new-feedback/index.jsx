@@ -38,26 +38,26 @@ const NewFeeback = ({ token }) => {
     event.preventDefault()
     try{
       await axios({
-        method:'POST',
-        url:`https://ka-users-api.herokuapp.com/users/${id}/feedbacks`,
-        headers:{
+        method: 'POST',
+        url: `https://ka-users-api.herokuapp.com/users/${id}/feedbacks`,
+        headers: {
           Authorization: token,
-          "Content-Type":"application/json"
+          "Content-Type": "application/json"
         },
-        data:{
-          feedback:{
-            name:name,
+        data: {
+          feedback: {
+            name: name,
             comment: comment,
             grade: grade
           }
-        } 
+        }
       })
       history.push(`/users/feedbacks/${id}`)
     }
-    catch(error){
+    catch (error) {
       console.log(error)
     }
-  
+
   }
 
  

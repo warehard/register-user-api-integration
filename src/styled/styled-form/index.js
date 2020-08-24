@@ -13,6 +13,11 @@ const StyledForm = styled(Form)`
     span{
         color:crimson;
     }
+    label {
+        text-align: right;
+        align-self: flex-start;
+        font-size: 24px;
+    }
 
 `
 export default StyledForm

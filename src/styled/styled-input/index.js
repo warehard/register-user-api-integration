@@ -22,7 +22,6 @@ const StyledInput = styled(Input)`
     label{
         font-size: 14px;
     }
-
-`
+`;
 
 export default StyledInput

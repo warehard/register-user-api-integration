@@ -16,7 +16,7 @@ const tailLayout = {
 };
 
 
-const Login = ({ setToken, setAuthentication}) => {
+const Login = ({ setToken, setAuthentication }) => {
 
 
   const [loginError, setLoginError] = useState('')
