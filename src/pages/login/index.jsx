@@ -103,7 +103,7 @@ const Login = ({ setToken, setAuthentication }) => {
         />
         <span>{loginError}</span>
         <StyledButton 
-          buttonName='Login' 
+          buttonName='Sign In' 
           width='245px' 
           height='45px'
           buttonIcon={signIn}

@@ -1,12 +1,12 @@
 import React from 'react'
 import StyledTHead from '../../styled/styled-thead'
-import TBody from '../tbody/index'
+import StyledTBody from '../../styled/styled-tbody'
 
 const Table = ({ className, columns, data}) => {
     return(
         <table className={className}>
             <StyledTHead columns={columns} />
-            <TBody data={data} columns={columns}/>
+            <StyledTBody data={data} columns={columns}/>
         </table>
     )
 }

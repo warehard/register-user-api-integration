@@ -8,11 +8,7 @@ const StyledTHead = styled(THead)`
     }
 
     @media (max-width: 420px) {
-        
-        tr{
-            height:0;
-        }
-       visibility:hidden;
+       display:none;
     }
 `
 export default StyledTHead

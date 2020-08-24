@@ -3,7 +3,7 @@ import Header from "../../components/header";
 
 const StyledHeader = styled(Header)`
   width: 100%;
-  height: 80px;
+  height: 10vh;
   background-color: #922ea3;
   display: flex;
   align-items: center;
@@ -11,7 +11,6 @@ const StyledHeader = styled(Header)`
 
   @media only screen and (max-width: 420px) {
     justify-content: center;
-    
   }
 `;
 

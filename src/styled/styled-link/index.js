@@ -7,6 +7,7 @@ const StyledLink = styled(Link)`
     font-weight: 400;
     font-size: 23px;
     color: #f3f3f3;
+    
     margin-right: 2.50rem;
     overflow: hidden;
     
@@ -54,8 +55,7 @@ const StyledLink = styled(Link)`
     }
 
 @media only screen and (max-width: 420px) {
-    margin-right: 1rem;
-    margin-left: 2rem;
+    margin:2.50rem 1rem 2.50rem 2rem;
 }
 
 `;
