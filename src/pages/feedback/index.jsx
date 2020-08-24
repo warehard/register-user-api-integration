@@ -1,31 +1,39 @@
 import React, { useEffect, useState } from 'react'
-import { Table, Button } from 'antd'
 import { useParams, useHistory } from 'react-router-dom';
 import styled from "styled-components";
 import { getUser } from './helper';
+import StyledTable from '../../styled/styled-table'
+import StyledPagination from '../../styled/styled-pagination'
+import StyledButton from '../../styled/styled-button';
+import beforeIcon from '../../images/icons/navigate_before-black-36dp.svg'
+import nextIcon from '../../images/icons/navigate_next-black-36dp.svg'
+import StyledContainer from '../../styled/styled-container'
 
 const Feedback = ({ token }) => {
   
   const history = useHistory()
   const { id } = useParams();
   const [user, setUser] = useState([])
+  const [pageInitial, setPageInitial] = useState(0)
+  const [pageFinal, setPageFinal] = useState(10)
+
 
   const columns = [
     {
       title: "id",
-      dataIndex: 'id',
+      key: 'id',
     },
     {
       title: "Name",
-      dataIndex: 'name',
+      key: 'name',
     },
     {
       title: "Comment",
-      dataIndex: 'comment',
+      key: 'comment',
     },
     {
       title: "Grade",
-      dataIndex: 'grade',
+      key: 'grade',
     },
     
   ]
@@ -44,72 +52,14 @@ const Feedback = ({ token }) => {
   user.map(e => e.key = e.id)
 
   return(
-    <Container>
-      <h1 className="title">Feedback</h1>
-      <NewTable columns={columns} dataSource={user} style={{width:'90%'}}/>
-      <Button type="primary" onClick={() => handleClick(id)}>New Feedback</Button>
-    </Container>
+    <StyledContainer>
+      <h1>Feedbacks</h1>
+      <StyledTable data={user.slice(pageInitial, pageFinal)} columns={columns} />
+      <StyledPagination pageInitial={pageInitial} setPageInitial={setPageInitial} pageFinal={pageFinal} setPageFinal={setPageFinal} data={user} previousIcon={beforeIcon} nextIcon={nextIcon}/>
+      <StyledButton handleClick={() => handleClick(id)} buttonName='New Feedback' width='200px' height='50px'/>
+    </StyledContainer>
   )
 }
 
 export default Feedback
 
-const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: center;
-
-  .title {
-    width: 90%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 1rem 5rem;
-    font-size: 4rem;
-    color: whitesmoke;
-  }
-`;
-
-const NewTable = styled(Table)`
-  div, button, p, h1, span {
-    background-color: #1B1D1E !important ;
-    color: whitesmoke;
-  }
-
-  a {
-    color: #2794F0;
-  }
-
-  th, tr, td, li {
-    background-color: #1B1D1E !important ;
-    color: whitesmoke !important ;
-  }
-
-    .ant-pagination-item-ellipsis {
-      background-color: #1B1D1E ;
-      color: whitesmoke !important ;
-    }
-
-    th:hover, td:hover {
-      color: whitesmoke;
-      background-color: goldenrod !important ;
-    }
-    
-    th::selection, td::selection {
-      color: whitesmoke;
-      background-color: goldenrod !important ;
-    }
-
-    .ant-table-row:hover, .ant-table-row-level-0:hover {
-      color: darkred;
-      background-color: goldenrod !important ;
-    }
-
-    .ant-table-row::selection, .ant-table-row-level-0::selection {
-      color: darkred;
-      background-color: goldenrod !important ;
-    }
-`;

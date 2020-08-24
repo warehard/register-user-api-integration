@@ -14,21 +14,26 @@ const StyledButton = styled(Button)`
     
     
     margin:20px;
-    transition: 0.2s;
+    transition: 0.5s;
     
 
 
     &:hover{
         background-color: #6F187D;
-        .icon{
-            transform: translateX(10px);
-        }
+        
     }
 
     &:active{
         background-color: #922ea3;
         .icon{
-            transform: translate(26px);
+            transition: 0.8s;
+            transform: translateX(26px);
+        }
+    }
+
+    &:focus{
+        .icon{
+            transform: translateX(26px);
         }
     }
 

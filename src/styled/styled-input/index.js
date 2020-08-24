@@ -17,8 +17,10 @@ const StyledInput = styled(Input)`
         margin-bottom:5px;
         outline:none;
     }
-    span{
-        color:crimson;
+    
+
+    label{
+        font-size: 14px;
     }
 `;
 

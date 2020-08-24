@@ -4,7 +4,8 @@ import { useHistory } from 'react-router-dom';
 import StyledForm from '../../styled/styled-form'
 import StyledButton from '../../styled/styled-button'
 import StyledInput from '../../styled/styled-input'
-import arrowForward from '../../images/icons/arrow_forward-black-18dp.svg'
+import StyledContainer from '../../styled/styled-container'
+import signIn from '../../images/icons/login-black-36dp.svg'
 
 const layout = {
   labelCol: { span: 8 },
@@ -34,7 +35,7 @@ const Login = ({ setToken, setAuthentication }) => {
   }
 
   useEffect(() => {
-
+  
   }, [username, password])
 
   const onFinish = async (e) => {
@@ -72,16 +73,16 @@ const Login = ({ setToken, setAuthentication }) => {
     }
   };
 
-  console.log(username.length)
+  
   
   return(
-
+    <StyledContainer>
       <StyledForm handleSubmit={onFinish} titleSize='60px'>
         <h1>Welcome</h1>
         <StyledInput
           label='Username'
           name='username'
-          rules={{required:true}}
+          required={true}
           value={username}
           handleChange={handleUsername}
           width='350px'
@@ -92,7 +93,7 @@ const Login = ({ setToken, setAuthentication }) => {
          <StyledInput
           label='Password'
           name='password'
-          rules={{required:true}}
+          required={true}
           value={password}
           handleChange={handlePassword}
           width='350px'
@@ -105,11 +106,11 @@ const Login = ({ setToken, setAuthentication }) => {
           buttonName='Login' 
           width='245px' 
           height='45px'
-          buttonIcon={arrowForward}
+          buttonIcon={signIn}
           />
       </StyledForm>
-    
-  )
+    </StyledContainer>
+    )
 }
 
 export default Login;

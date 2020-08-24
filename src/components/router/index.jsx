@@ -40,15 +40,15 @@ const Router = ({ token, setToken }) => {
             </Route>
 
             <Route path='/register'>
-              <div>
+              
                 <UserRegister />
-              </div>
+              
             </Route>
 
             <Route exact path='/'>
-              <div>
-                <Login setAuthentication={setAuthentication} setToken={setToken} />
-              </div>
+              
+                <Login setAuthentication={setAuthentication} setToken={setToken} authentication={authentication}/>
+              
             </Route>
             
           </Switch>
@@ -56,21 +56,21 @@ const Router = ({ token, setToken }) => {
           <Switch>
 
             <Route path='/users'>
-              <div>
+              
                 <img src={errorImage} alt="404 Error" />
-              </div>
+              
             </Route>
 
             <Route path='/register'>
-              <div>
+              
                 <UserRegister />
-              </div>
+              
             </Route>
 
             <Route exact path='/'>
-              <div>
+              
                 <Login setAuthentication={setAuthentication} setToken={setToken} />
-              </div>
+              
             </Route>
 
           </Switch>

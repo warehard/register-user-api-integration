@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Pagination = ({className, pageInitial ,setPageInitial, pageFinal ,setPageFinal, data}) => {
+const Pagination = ({className, pageInitial ,setPageInitial, pageFinal ,setPageFinal, data, previousIcon, nextIcon}) => {
 
     const [page, setPage] = useState(1)
 
@@ -26,12 +26,12 @@ const Pagination = ({className, pageInitial ,setPageInitial, pageFinal ,setPageF
         
     }
 
-    console.log(data.length / 10)
+    
     return(
         <div className={className}>
-            <button onClick={handlePrevious} className='previousButton'>&lt;</button>
-            <div>Page {page}/{totalPages}</div>
-            <button onClick={handleNext} className='nextButton'>&gt;</button>
+            <button onClick={handlePrevious} className='previousButton'>{previousIcon ? <img src={previousIcon} className='previous' />: '&gt;'}</button>
+            <div><p>Page {page}/{totalPages}</p></div>
+            <button onClick={handleNext} className='nextButton'>{nextIcon ? <img src={nextIcon} className='next'/>: '&gt;'}</button>
         </div>
     )
 }
