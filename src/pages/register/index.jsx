@@ -62,14 +62,6 @@ const UserRegister = () => {
   const verifyName = () => {
     const regexName = /\s/;
     return !regexName.test(name) && name.length > 0;
-
-    /* if(!regexName.test(name) && name.length > 0) {
-      return true;
-    } else {
-      // setNameError("invalid name format");
-      nameErrors = "invalid name format";
-      return false;
-    } */
   }
 
   const verifyUsername = () => {
@@ -111,14 +103,10 @@ const UserRegister = () => {
 
     event.preventDefault();
 
-    // console.log(verify(), verifyName(), verifyUsername(), verifyEmail(), verifyPassword(), verifyConfirmPassword(), email);
-
     verify() && await registerUserFetch();
   };
 
   return (
-
-
 
     <StyledForm handleSubmit={onFinish} titleSize='60px'>
       <h1>Register</h1>
@@ -127,11 +115,11 @@ const UserRegister = () => {
 
       <StyledInput required={true} label="Username" name="username" handleChange={handleFormUsernameChange} value={username}  />
 
-      <StyledInput required={true} label="Email" name="texto" handleChange={handleFormEmailChange} value={email}  />
+      <StyledInput required={true} label="Email" name="text" handleChange={handleFormEmailChange} value={email}  />
 
       <StyledInput required={true} label="Password" name="password" handleChange={handleFormPasswordChange} value={password}  />
 
-      <StyledInput required={true} label="Confirm Password" name="confirmPassword" handleChange={handleFormPasswordConfirmationChange} value={confirmPassword}  />
+      <StyledInput required={true} label="Confirm Password" name="password" handleChange={handleFormPasswordConfirmationChange} value={confirmPassword}  />
 
       <StyledButton 
           buttonName='Register' 
@@ -141,7 +129,6 @@ const UserRegister = () => {
           />
 
     </StyledForm>
-    
 
   )
 }
