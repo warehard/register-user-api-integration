@@ -7,10 +7,6 @@ import StyledInput from '../../styled/styled-input'
 import StyledButton from '../../styled/styled-button'
 import StyledContainer from '../../styled/styled-container'
 
-
-
-
-
 const NewFeeback = ({ token }) => {
   console.log(token)
   const { id } = useParams()
