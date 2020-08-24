@@ -22,7 +22,6 @@ time, mark, audio, video {
 } */
 
 .app{
-  
   height: 100vh;
   display:flex;
   flex-direction: column;
@@ -32,14 +31,5 @@ time, mark, audio, video {
   display: flex;
   justify-content: center;
   flex-grow: 2;
-  background-color: #f7f7f7;
-}
-
-.users{
-  margin:1.25rem 0.625rem 1.25rem 0.625rem;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  ;
 }

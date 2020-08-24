@@ -26,12 +26,12 @@ const Pagination = ({className, pageInitial ,setPageInitial, pageFinal ,setPageF
         
     }
 
-    console.log(data.length / 10)
+    
     return(
         <div className={className}>
             <button onClick={handlePrevious} className='previousButton'>{previousIcon ? <img src={previousIcon} className='previous' />: '&gt;'}</button>
             <div><p>Page {page}/{totalPages}</p></div>
-    <button onClick={handleNext} className='nextButton'>{nextIcon ? <img src={nextIcon} className='next'/>: '&gt;'}</button>
+            <button onClick={handleNext} className='nextButton'>{nextIcon ? <img src={nextIcon} className='next'/>: '&gt;'}</button>
         </div>
     )
 }

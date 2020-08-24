@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import StyledForm from '../../styled/styled-form'
 import StyledButton from '../../styled/styled-button'
 import StyledInput from '../../styled/styled-input'
+import StyledContainer from '../../styled/styled-container'
 import signIn from '../../images/icons/login-black-36dp.svg'
 
 const layout = {
@@ -72,10 +73,10 @@ const Login = ({ setToken, setAuthentication}) => {
     }
   };
 
-  console.log(username.length)
+  
   
   return(
-
+    <StyledContainer>
       <StyledForm handleSubmit={onFinish} titleSize='60px'>
         <h1>Welcome</h1>
         <StyledInput
@@ -108,8 +109,8 @@ const Login = ({ setToken, setAuthentication}) => {
           buttonIcon={signIn}
           />
       </StyledForm>
-    
-  )
+    </StyledContainer>
+    )
 }
 
 export default Login;

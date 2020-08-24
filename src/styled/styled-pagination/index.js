@@ -7,7 +7,7 @@ const StyledPagination = styled(Pagination)`
     justify-content:space-between;
     border-radius:5px;
     height:40px;
-    
+    margin:1.25rem;
 
     div{
         border: 2px solid #922EA3;

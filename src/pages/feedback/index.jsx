@@ -5,6 +5,9 @@ import { getUser } from './helper';
 import StyledTable from '../../styled/styled-table'
 import StyledPagination from '../../styled/styled-pagination'
 import StyledButton from '../../styled/styled-button';
+import beforeIcon from '../../images/icons/navigate_before-black-36dp.svg'
+import nextIcon from '../../images/icons/navigate_next-black-36dp.svg'
+import StyledContainer from '../../styled/styled-container'
 
 const Feedback = ({ token }) => {
   
@@ -49,30 +52,14 @@ const Feedback = ({ token }) => {
   user.map(e => e.key = e.id)
 
   return(
-    <Container>
+    <StyledContainer>
+      <h1>Feedbacks</h1>
       <StyledTable data={user.slice(pageInitial, pageFinal)} columns={columns} />
-      <StyledPagination pageInitial={pageInitial} setPageInitial={setPageInitial} pageFinal={pageFinal} setPageFinal={setPageFinal} data={user}/>
+      <StyledPagination pageInitial={pageInitial} setPageInitial={setPageInitial} pageFinal={pageFinal} setPageFinal={setPageFinal} data={user} previousIcon={beforeIcon} nextIcon={nextIcon}/>
       <StyledButton handleClick={() => handleClick(id)} buttonName='New Feedback' width='200px' height='50px'/>
-    </Container>
+    </StyledContainer>
   )
 }
 
 export default Feedback
 
-const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: center;
-
-  .title {
-    width: 90%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 1rem 5rem;
-    font-size: 4rem;
-  }
-`

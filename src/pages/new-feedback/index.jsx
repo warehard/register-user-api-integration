@@ -5,6 +5,8 @@ import { useParams, useHistory } from 'react-router-dom';
 import StyledForm from '../../styled/styled-form'
 import StyledInput from '../../styled/styled-input'
 import StyledButton from '../../styled/styled-button'
+import StyledContainer from '../../styled/styled-container'
+
 
 
 
@@ -60,7 +62,8 @@ const NewFeeback = ({ token }) => {
 
  
   return(
-    <Container>
+    <StyledContainer>
+      <h1>New Feedback</h1>
       <StyledForm handleSubmit={onFinish}>
         <StyledInput 
           label='Name'
@@ -95,28 +98,10 @@ const NewFeeback = ({ token }) => {
           height='50px'
         />
       </StyledForm>
-    </Container>
+    </StyledContainer>
   )
 }
 
 export default NewFeeback
 
 
-const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-
-  .title {
-    width: 90%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-items: center;
-    margin: 1rem 5rem;
-    font-size: 4rem;
-  }
-`

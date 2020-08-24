@@ -22,18 +22,18 @@ function App() {
       
       {!token ?
       <StyledHeader>
-        <StyledLink to='/' ><span data-hover='Login' className={pathname === '/' && 'selectedPage'}>Login</span></StyledLink>
-        <StyledLink to='/register'><span data-hover='Register' className={pathname === '/register' && 'selectedPage'}>Register</span></StyledLink>
+        <StyledLink to='/' ><span data-hover='Login' className={pathname === '/' ? 'selectedPage': undefined}>Login</span></StyledLink>
+        <StyledLink to='/register'><span data-hover='Register' className={pathname === '/register' ? 'selectedPage' : undefined}>Register</span></StyledLink>
       </StyledHeader>
       :
       <StyledHeader>
-        <StyledLink to='/users'><span data-hover='Students' className={pathname === '/users' && 'selectedPage'}>Students</span></StyledLink>
+        <StyledLink to='/users'><span data-hover='Students' className={pathname === '/users' && 'selectedPage'} >Students</span></StyledLink>
         <StyledLink onClick={() => {localStorage.clear(); setToken(null)}} to='/' ><span data-hover='Logout'>Logout</span></StyledLink>
       </StyledHeader>
       }
 
       <Router token={token} setToken={setToken}/>
-      <StyledFooter>Desenvolvido por Augusto Pietroski e Eduardo Magno</StyledFooter>
+      <StyledFooter><p>Desenvolvido por <a href='https://www.linkedin.com/in/augusto-pietroski-8659465a/'>Augusto Pietroski</a> e <a href='https://www.linkedin.com/in/edu-magno/'>Eduardo Magno</a></p></StyledFooter>
     </div>
     )
 }

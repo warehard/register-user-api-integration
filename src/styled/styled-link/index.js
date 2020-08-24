@@ -47,9 +47,10 @@ const StyledLink = styled(Link)`
         -webkit-transform: translate3d(0,0,0);
         -moz-transform: translate3d(0,0,0);
         transform: translate3d(0,0,0);
-        -webkit-transform: translateY(-100%);
-		-moz-transform: translateY(-100%);
-		transform: translateY(-100%);
+    }
+
+    .noSelected{
+        font-weight:400;
     }
     
 
