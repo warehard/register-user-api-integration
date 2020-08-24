@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import Pagination from '../../components/pagination'
 
 const StyledPagination = styled(Pagination)`
-    width:20vw;
+    width:350px;
     display: flex;
     justify-content:space-between;
     border-radius:5px;
@@ -11,7 +11,7 @@ const StyledPagination = styled(Pagination)`
 
     div{
         border: 2px solid #922EA3;
-        width:70%;
+        width:250px;
         display:flex;
         justify-content:center;
         font-family: 'Red Hat Text', sans-serif;
@@ -25,7 +25,7 @@ const StyledPagination = styled(Pagination)`
         padding-top:2px;
     }
     button{
-        width:15%;
+        width:50px;
         background-color:transparent;
         border:none;
         outline:none;
@@ -68,6 +68,19 @@ const StyledPagination = styled(Pagination)`
         border-bottom:2px solid #922ea3;
         border-top-right-radius:5px;
         border-bottom-right-radius:5px;
+    }
+
+
+    @media (max-width:420px) {
+        width:250px;
+
+        div{
+            width:150px;
+        }
+
+        button{
+            width:50px;
+        }
     }
 `
 
