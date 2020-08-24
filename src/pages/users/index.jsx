@@ -4,6 +4,8 @@ import { getUsers } from './helper';
 
 import StyledTable from '../../styled/styled-table'
 import StyledPagination from '../../styled/styled-pagination';
+import beforeIcon from '../../images/icons/navigate_before-black-36dp.svg'
+import nextIcon from '../../images/icons/navigate_next-black-36dp.svg'
 
 const Users = ({ token }) => {
 
@@ -49,7 +51,7 @@ const Users = ({ token }) => {
   return(
     <div className='users'>
       <StyledTable data={users.slice(pageInitial,pageFinal)} columns={columns} />
-      <StyledPagination pageInitial={pageInitial} setPageInitial={setPageInitial} pageFinal={pageFinal} setPageFinal={setPageFinal} data={users}/>
+      <StyledPagination pageInitial={pageInitial} setPageInitial={setPageInitial} pageFinal={pageFinal} setPageFinal={setPageFinal} data={users} previousIcon={beforeIcon} nextIcon={nextIcon}/>
     </div>
   )
 }

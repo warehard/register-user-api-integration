@@ -18,23 +18,20 @@ function App() {
 
   return (
     <div className='app'>
+      {pathname === "/" && localStorage.clear()}
+      
+      {!token ?
       <StyledHeader>
-        <StyledLink to={pathname === '/' || pathname === '/register' ? '/' : '/users'}>
-          <span
-            data-hover={pathname === '/' ? 'Login' :'Alunos' } 
-            >
-              {pathname === '/' ? 'Login' :  'Alunos'}
-          </span>
-        </StyledLink>
-        <StyledLink 
-          to={pathname === '/' || pathname === '/register' ? '/register' : '/'}>
-          <span 
-            data-hover={pathname === '/' || pathname === '/register' ? 'Register' : 'Logout'}
-             >
-              {pathname === '/' || pathname === '/register' ? 'Register' : 'Logout'}
-          </span>
-        </StyledLink>
+        <StyledLink to='/' ><span data-hover='Login' className={pathname === '/' && 'selectedPage'}>Login</span></StyledLink>
+        <StyledLink to='/register'><span data-hover='Register' className={pathname === '/register' && 'selectedPage'}>Register</span></StyledLink>
       </StyledHeader>
+      :
+      <StyledHeader>
+        <StyledLink to='/users'><span data-hover='Students' className={pathname === '/users' && 'selectedPage'}>Students</span></StyledLink>
+        <StyledLink onClick={() => {localStorage.clear(); setToken(null)}} to='/' ><span data-hover='Logout'>Logout</span></StyledLink>
+      </StyledHeader>
+      }
+
       <Router token={token} setToken={setToken}/>
       <StyledFooter>Desenvolvido por Augusto Pietroski e Eduardo Magno</StyledFooter>
     </div>

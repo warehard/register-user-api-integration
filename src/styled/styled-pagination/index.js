@@ -7,6 +7,7 @@ const StyledPagination = styled(Pagination)`
     justify-content:space-between;
     border-radius:5px;
     height:40px;
+    
 
     div{
         border: 2px solid #922EA3;
@@ -27,12 +28,31 @@ const StyledPagination = styled(Pagination)`
         width:15%;
         background-color:transparent;
         border:none;
-        transition:0.2s;
         outline:none;
+        img{
+            transition 0.3s;
+        }
     }
 
+    
+
     button:hover{
-        background-color:#bdbdbd;
+        .previous{
+            
+            transform: translateX(-3px);
+        }
+        .next{
+            transform: translateX(3px);
+        }
+    }
+
+    button:active{
+        .previous{
+            transform: translateX(-6px);
+        }
+        .next{
+            transform: translateX(6px);
+        }
     }
     .previousButton{
         border-left:2px solid #922ea3;

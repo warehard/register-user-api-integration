@@ -39,6 +39,18 @@ const StyledLink = styled(Link)`
 		transform: translateY(-100%);
     }
     
+    .selectedPage{
+        
+        top: 100%;
+        content: attr(data-hover);
+        font-weight: bold;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        -webkit-transform: translateY(-100%);
+		-moz-transform: translateY(-100%);
+		transform: translateY(-100%);
+    }
     
 
 `
