@@ -3,7 +3,6 @@ import axios from 'axios';
 import StyledForm from '../../styled/styled-form'
 import StyledInput from '../../styled/styled-input'
 import StyledButton from '../../styled/styled-button'
-import arrowForward from '../../images/icons/arrow_forward-black-18dp.svg'
 
 const defaultValues = {
   name: '',
