@@ -141,7 +141,7 @@ const UserRegister = () => {
 
       <StyledInput required={true} error={nameError} message={nameError && "name cannot be blank"} label="Name" name="name" handleChange={handleFormNameChange} value={name}  />
 
-      <StyledInput required={true} error={usernameError} message={usernameError && "username cannot be blank neither contain spaces"} label="Username" name="username" handleChange={handleFormUsernameChange} value={username}  />
+      <StyledInput required={true} error={usernameError} message={usernameError && "invalid username"} label="Username" name="username" handleChange={handleFormUsernameChange} value={username}  />
 
       <StyledInput required={true} error={emailError} message={emailError && "invalid email format"} label="Email" name="text" handleChange={handleFormEmailChange} value={email}  />
 
