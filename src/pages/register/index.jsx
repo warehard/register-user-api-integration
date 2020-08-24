@@ -125,7 +125,7 @@ const UserRegister = () => {
           buttonName='Register' 
           width='245px' 
           height='45px'
-          buttonIcon={arrowForward}
+          
           />
 
     </StyledForm>
