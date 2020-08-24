@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import StyledForm from '../../styled/styled-form'
 import StyledInput from '../../styled/styled-input'
 import StyledButton from '../../styled/styled-button'
-import arrowForward from '../../images/icons/arrow_forward-black-18dp.svg'
 
 const defaultValues = {
   name: '',
@@ -22,22 +21,17 @@ const defaultError = {
 
 const UserRegister = () => {
 
-  const [formValues, setFormValues] = useState(defaultValues);
-  const [formValueErrors, setFormValueErrors] = useState(defaultError);
-
-  const nameErrors = '';
-
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
-  const [nameError, setNameError] = useState("");
-  const [usernameError, setUsernameError] = useState(defaultError);
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState(defaultError);
-  const [confirmPasswordError, setConfirmPasswordError] = useState(defaultError);
+  const [nameError, setNameError] = useState(false);
+  const [usernameError, setUsernameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
 
   const handleFormNameChange = ({target: {value}}) => {
     setName(value)
@@ -60,29 +54,63 @@ const UserRegister = () => {
   }
 
   const verifyName = () => {
-    const regexName = /\s/;
-    return !regexName.test(name) && name.length > 0;
+    if(name.length > 0) {
+      setNameError(false);
+      return true;
+    } else {
+      setNameError(true);
+      return false;
+    }
   }
 
   const verifyUsername = () => {
     const regexUsername = /\s/;
-    return !regexUsername.test(username) && name.length > 0;
+    if(!regexUsername.test(username) && name.length > 0) {
+      setUsernameError(false);
+      return true;
+    } else {
+      setUsernameError(true);
+      return false;
+    }
   }
 
   const verifyEmail = () => {
     const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
-    return regexEmail.test(email) && email.length > 0;
+    if(regexEmail.test(email) && email.length > 0) {
+      setEmailError(false);
+      return true;
+    } else {
+      setEmailError(true);
+      return false;
+    }
   }
 
   const verifyPassword = () => {
-    return password.length > 2;
+    if(password.length > 2) {
+      setPasswordError(false);
+      return true;
+    } else {
+      setPasswordError(true);
+      return false;
+    }
   }
 
   const verifyConfirmPassword = () => {
-    return confirmPassword === password;
+    if(confirmPassword === password && confirmPassword) {
+      setConfirmPasswordError(false);
+      return true;
+    } else {
+      setConfirmPasswordError(true);
+      return false;
+    }
   }
 
   const verify = () => {
+    verifyName();
+    verifyUsername();
+    verifyEmail();
+    verifyPassword();
+    verifyConfirmPassword();
     return(verifyName() && verifyUsername() && verifyEmail() && verifyPassword() && verifyConfirmPassword())
   }
 
@@ -111,21 +139,20 @@ const UserRegister = () => {
     <StyledForm handleSubmit={onFinish} titleSize='60px'>
       <h1>Register</h1>
 
-      <StyledInput required={true} label="Name" name="name" handleChange={handleFormNameChange} value={name}  />
+      <StyledInput required={true} error={nameError} message={nameError && "name cannot be blank"} label="Name" name="name" handleChange={handleFormNameChange} value={name}  />
 
-      <StyledInput required={true} label="Username" name="username" handleChange={handleFormUsernameChange} value={username}  />
+      <StyledInput required={true} error={usernameError} message={usernameError && "username cannot be blank neither contain spaces"} label="Username" name="username" handleChange={handleFormUsernameChange} value={username}  />
 
-      <StyledInput required={true} label="Email" name="text" handleChange={handleFormEmailChange} value={email}  />
+      <StyledInput required={true} error={emailError} message={emailError && "invalid email format"} label="Email" name="text" handleChange={handleFormEmailChange} value={email}  />
 
-      <StyledInput required={true} label="Password" name="password" handleChange={handleFormPasswordChange} value={password}  />
+      <StyledInput required={true} error={passwordError} message={passwordError && "password cannot be blank"} label="Password" name="password" handleChange={handleFormPasswordChange} value={password}  />
 
-      <StyledInput required={true} label="Confirm Password" name="password" handleChange={handleFormPasswordConfirmationChange} value={confirmPassword}  />
+      <StyledInput required={true} error={confirmPasswordError} message={confirmPasswordError && "passwords should be the same"} label="Confirm Password" name="password" handleChange={handleFormPasswordConfirmationChange} value={confirmPassword}  />
 
       <StyledButton 
           buttonName='Register' 
           width='245px' 
           height='45px'
-          buttonIcon={arrowForward}
           />
 
     </StyledForm>
