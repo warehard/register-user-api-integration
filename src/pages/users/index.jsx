@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { getUsers } from './helper'
-import StyledTable from '../../styled/styled-table'
-import StyledPagination from '../../styled/styled-pagination'
-import StyledContainer from '../../styled/styled-container'
+import { StyledContainer, StyledPagination, StyledTable } from '../../styled'
 
 const Users = ({ token }) => {
   const { page } = useParams()
   const pageLimit = 10
-
+  
   const columns = [
     {
       title: 'id',
@@ -38,12 +36,15 @@ const Users = ({ token }) => {
   const [users, setUsers] = useState([])
   const [pageInitial, setPageInitial] = useState(0)
   const [pageFinal, setPageFinal] = useState(pageLimit)
+  
 
   useEffect(() => {
     const data = async () => {
       setUsers(await getUsers(token))
+      
     }
     data()
+    
   }, [])
 
   users.map(e => e.key = e.id)
@@ -63,6 +64,8 @@ const Users = ({ token }) => {
         setPageFinal={setPageFinal}
         data={users}
         pageLimit={pageLimit}
+        url={{required:true,page:'/users/'}}
+        
       />
     </StyledContainer>
   )

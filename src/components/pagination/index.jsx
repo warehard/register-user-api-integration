@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import moreIcon from '../../images/icons/more_horiz-black-18dp.svg'
 
-const Pagination = ({ className, setPageInitial, setPageFinal, data, pageLimit }) => {
+const Pagination = ({ className, setPageInitial, setPageFinal, data, pageLimit ,url, }) => {
+  
   const pageArr = []
+  
   const [initialSlice, setInitialSlice] = useState(1)
   const [lastSlice, setLastSlice] = useState(5)
   const history = useHistory()
@@ -12,12 +14,13 @@ const Pagination = ({ className, setPageInitial, setPageFinal, data, pageLimit }
   if (totalPages % 1 !== 0) {
     totalPages = Math.floor(totalPages += 1)
   }
-
+  
   for (let i = 1; i <= totalPages; i++) {
     pageArr.push(i)
   }
-
+  
   const handlePage = (currentPage) => {
+    
     setPageInitial((currentPage - 1) * pageLimit)
     setPageFinal(currentPage * pageLimit)
     if (currentPage === lastSlice - 1) {
@@ -39,18 +42,20 @@ const Pagination = ({ className, setPageInitial, setPageFinal, data, pageLimit }
       setInitialSlice(totalPages - 5)
       setLastSlice(totalPages - 1)
     }
-
-    history.push(`/users/${currentPage}`)
+    if (url.required === true) {
+      
+      history.push(`${url.page}${currentPage}`)
+    }
   }
 
   return (
     <div className={className}>
 
-      <button key={pageArr[0]} onClick={() => handlePage(pageArr[0])}>{pageArr[0]}</button>
+      <button key={pageArr[0]} onClick={() => handlePage(pageArr[0])}>{1}</button>
       {initialSlice !== 1 && <img src={moreIcon} />}
       {pageArr.slice(initialSlice, lastSlice).map((page) => <button key={page} onClick={() => handlePage(page)}>{page}</button>)}
-      <img src={moreIcon} />
-      <button key={totalPages} onClick={() => handlePage(totalPages)}>{totalPages}</button>
+      {pageArr.length > 2 && <img src={moreIcon} />}
+      {pageArr.length > 2 && <button key={totalPages} onClick={() => handlePage(totalPages)}>{totalPages}</button>}
 
     </div>
   )

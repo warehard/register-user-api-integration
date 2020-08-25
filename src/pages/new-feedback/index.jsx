@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useParams, useHistory } from 'react-router-dom'
-import StyledForm from '../../styled/styled-form'
-import StyledInput from '../../styled/styled-input'
-import StyledButton from '../../styled/styled-button'
-import StyledContainer from '../../styled/styled-container'
+import { StyledButton, StyledContainer, StyledForm, StyledInput } from '../../styled'
 
 const NewFeeback = ({ token }) => {
   const { id } = useParams()

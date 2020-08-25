@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import StyledForm from '../../styled/styled-form'
-import StyledInput from '../../styled/styled-input'
-import StyledButton from '../../styled/styled-button'
 import { useHistory } from 'react-router-dom'
-import StyledContainer from '../../styled/styled-container'
 import styled from 'styled-components'
+import { StyledButton, StyledContainer, StyledForm, StyledInput} from '../../styled'
 
 const UserRegister = () => {
   const history = useHistory()

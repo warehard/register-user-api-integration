@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
-import StyledForm from '../../styled/styled-form'
-import StyledButton from '../../styled/styled-button'
-import StyledInput from '../../styled/styled-input'
-import StyledContainer from '../../styled/styled-container'
+import { StyledButton, StyledContainer, StyledForm, StyledInput } from '../../styled'
 import signIn from '../../images/icons/login-black-36dp.svg'
 
 const Login = ({ setToken, setAuthentication }) => {

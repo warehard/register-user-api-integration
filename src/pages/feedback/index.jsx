@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { getUser } from './helper'
-import StyledTable from '../../styled/styled-table'
-import StyledPagination from '../../styled/styled-pagination'
-import StyledButton from '../../styled/styled-button'
-import beforeIcon from '../../images/icons/navigate_before-black-36dp.svg'
-import nextIcon from '../../images/icons/navigate_next-black-36dp.svg'
-import StyledContainer from '../../styled/styled-container'
+import { StyledButton, StyledContainer, StyledPagination, StyledTable } from '../../styled'
 
 const Feedback = ({ token }) => {
   const history = useHistory()
@@ -52,7 +47,7 @@ const Feedback = ({ token }) => {
     <StyledContainer>
       <h1>Feedbacks</h1>
       <StyledTable data={user.slice(pageInitial, pageFinal)} columns={columns} />
-      <StyledPagination pageInitial={pageInitial} setPageInitial={setPageInitial} pageFinal={pageFinal} setPageFinal={setPageFinal} data={user} previousIcon={beforeIcon} nextIcon={nextIcon} />
+      <StyledPagination pageInitial={pageInitial} setPageInitial={setPageInitial} pageFinal={pageFinal} setPageFinal={setPageFinal} data={user} pageLimit={10} url={{required:false}} />
       <StyledButton handleClick={() => handleClick(id)} buttonName='New Feedback' width='200px' height='50px' />
     </StyledContainer>
   )

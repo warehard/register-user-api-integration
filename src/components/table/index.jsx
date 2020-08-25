@@ -1,6 +1,5 @@
 import React from 'react'
-import StyledTHead from '../../styled/styled-thead'
-import StyledTBody from '../../styled/styled-tbody'
+import { StyledTBody, StyledTHead} from '../../styled'
 
 const Table = ({ className, columns, data }) => {
   return (
