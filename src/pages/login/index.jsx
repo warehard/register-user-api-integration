@@ -1,24 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
 import StyledForm from '../../styled/styled-form'
 import StyledButton from '../../styled/styled-button'
 import StyledInput from '../../styled/styled-input'
 import StyledContainer from '../../styled/styled-container'
 import signIn from '../../images/icons/login-black-36dp.svg'
 
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
-};
-const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
-};
-
-
 const Login = ({ setToken, setAuthentication }) => {
-
-
   const [loginError, setLoginError] = useState('')
   const [userError, setUserError] = useState(false)
   const [passwordError, setPasswordError] = useState(false)
@@ -35,54 +24,50 @@ const Login = ({ setToken, setAuthentication }) => {
   }
 
   useEffect(() => {
-  
+
   }, [username, password])
 
   const onFinish = async (e) => {
     e.preventDefault()
-    
+
     if (username.length === 0) {
       setUserError(true)
-    }else{
+    } else {
       setUserError(false)
     }
     if (password.length <= 3) {
       setPasswordError(true)
-    }else{
+    } else {
       setPasswordError(false)
     }
-    if ( username.length > 0 && password.length > 3) {
+    if (username.length > 0 && password.length > 3) {
       setUserError(false)
       setPasswordError(false)
-      try{
+      try {
         const response = await axios.post('https://ka-users-api.herokuapp.com/authenticate', {
-          user: username, 
+          user: username,
           password: password
         })
-    
+
         setToken(response.data.auth_token)
         setAuthentication(true)
         localStorage.setItem('token', response.data.auth_token)
         history.push('/users/1')
-        }
-        catch(error) { 
-          setAuthentication(false)
-          setLoginError(error.response.data.error.user_authentication)
-          
-        }
+      } catch (error) {
+        setAuthentication(false)
+        setLoginError(error.response.data.error.user_authentication)
+      }
     }
-  };
+  }
 
-  
-  
-  return(
+  return (
     <StyledContainer>
+      <h1>Welcome</h1>
       <StyledForm handleSubmit={onFinish} titleSize='60px'>
-        <h1>Welcome</h1>
         <StyledInput
           label='Username'
           name='username'
-          required={true}
+          required
           value={username}
           handleChange={handleUsername}
           width='350px'
@@ -90,10 +75,10 @@ const Login = ({ setToken, setAuthentication }) => {
           error={userError}
           message='Usuário Inválido'
         />
-         <StyledInput
+        <StyledInput
           label='Password'
           name='password'
-          required={true}
+          required
           value={password}
           handleChange={handlePassword}
           width='350px'
@@ -102,15 +87,15 @@ const Login = ({ setToken, setAuthentication }) => {
           message='Senha inválida'
         />
         <span>{loginError}</span>
-        <StyledButton 
-          buttonName='Sign In' 
-          width='245px' 
+        <StyledButton
+          buttonName='Sign In'
+          width='245px'
           height='45px'
           buttonIcon={signIn}
-          />
+        />
       </StyledForm>
     </StyledContainer>
-    )
+  )
 }
 
-export default Login;
+export default Login

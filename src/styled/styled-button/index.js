@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Button from "../../components/button";
+import styled from 'styled-components'
+import Button from '../../components/button'
 
 const StyledButton = styled(Button)`
   width: ${(props) => `${props.width}`};
@@ -48,6 +48,6 @@ const StyledButton = styled(Button)`
   @media only screen and (max-width: 420px) {
         width: 220px;
   } 
-`;
+`
 
-export default StyledButton;
+export default StyledButton

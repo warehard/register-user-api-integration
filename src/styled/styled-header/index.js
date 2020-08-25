@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Header from "../../components/header";
+import styled from 'styled-components'
+import Header from '../../components/header'
 
 const StyledHeader = styled(Header)`
   width: 100%;
@@ -12,6 +12,6 @@ const StyledHeader = styled(Header)`
   @media only screen and (max-width: 420px) {
     justify-content: center;
   }
-`;
+`
 
-export default StyledHeader;
+export default StyledHeader

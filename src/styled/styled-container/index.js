@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const StyledContainer = styled.div`
   display: flex;
@@ -21,6 +21,6 @@ const StyledContainer = styled.div`
       font-size: 48px;
     }
   }
-`;
+`
 
-export default StyledContainer;
+export default StyledContainer

@@ -1,14 +1,13 @@
 import React from 'react'
-import StyledTh from '../../styled/styled-th'
 
 const THead = ({ className, children, columns }) => {
-    return(
-        <thead className={className}>
-           <tr>
-               {columns.map(row => <StyledTh key={row.key}>{row.title}</StyledTh>)}
-           </tr>
-        </thead>
-    )
+  return (
+    <thead className={className}>
+      <tr>
+        {columns.map(row => <th key={row.key}>{row.title}</th>)}
+      </tr>
+    </thead>
+  )
 }
 
 export default THead

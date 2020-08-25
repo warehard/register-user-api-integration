@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 export const getUser = async (id, token) => {
   const response = await axios.get(`https://ka-users-api.herokuapp.com/users/${id}/feedbacks`, {
     headers: {
@@ -10,5 +9,3 @@ export const getUser = async (id, token) => {
 
   return response.data
 }
-
-

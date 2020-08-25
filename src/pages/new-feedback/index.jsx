@@ -1,16 +1,13 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import axios from 'axios'
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom'
 import StyledForm from '../../styled/styled-form'
 import StyledInput from '../../styled/styled-input'
 import StyledButton from '../../styled/styled-button'
 import StyledContainer from '../../styled/styled-container'
 
 const NewFeeback = ({ token }) => {
-  console.log(token)
   const { id } = useParams()
-  console.log(id)
   const history = useHistory()
   const [name, setName] = useState('')
   const [comment, setComment] = useState('')
@@ -20,25 +17,23 @@ const NewFeeback = ({ token }) => {
     setName(event.target.value)
   }
 
-  
   const handleComment = event => {
     setComment(event.target.value)
   }
 
-  
   const handleGrade = event => {
     setGrade(event.target.value)
   }
 
   const onFinish = async (event) => {
     event.preventDefault()
-    try{
+    try {
       await axios({
         method: 'POST',
         url: `https://ka-users-api.herokuapp.com/users/${id}/feedbacks`,
         headers: {
           Authorization: token,
-          "Content-Type": "application/json"
+          'Content-Type': 'application/json'
         },
         data: {
           feedback: {
@@ -49,19 +44,16 @@ const NewFeeback = ({ token }) => {
         }
       })
       history.push(`/users/feedbacks/${id}`)
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error)
     }
-
   }
 
- 
-  return(
+  return (
     <StyledContainer>
       <h1>New Feedback</h1>
       <StyledForm handleSubmit={onFinish}>
-        <StyledInput 
+        <StyledInput
           label='Name'
           name='name'
           required={false}
@@ -79,7 +71,7 @@ const NewFeeback = ({ token }) => {
           width='350px'
           height='45px'
         />
-        <StyledInput 
+        <StyledInput
           label='Grade'
           name='grade'
           required={false}
@@ -99,5 +91,3 @@ const NewFeeback = ({ token }) => {
 }
 
 export default NewFeeback
-
-
