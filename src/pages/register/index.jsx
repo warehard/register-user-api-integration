@@ -131,7 +131,7 @@ const UserRegister = () => {
         "password_confirmation": confirmPassword
       }
     })
-    .then((resp) => {console.log(resp); setRegistrationStatus(true); setTimeout(() => {history.push("/")}, 1000)})
+    .then((resp) => {console.log(resp); setRegistrationStatus(true); setTimeout(() => {history.push("/")}, 1500)})
     .catch((err) => {console.log(err); history.push("/register"); setRegistrationStatus(false)});
   }
 
