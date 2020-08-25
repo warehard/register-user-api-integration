@@ -3,6 +3,7 @@ import axios from 'axios';
 import StyledForm from '../../styled/styled-form'
 import StyledInput from '../../styled/styled-input'
 import StyledButton from '../../styled/styled-button'
+import { useHistory } from 'react-router-dom';
 
 const defaultValues = {
   name: '',
@@ -21,6 +22,8 @@ const defaultError = {
 
 const UserRegister = () => {
 
+  const history = useHistory();
+
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
@@ -32,6 +35,8 @@ const UserRegister = () => {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+
+  const [registrationStatus, setRegistrationStatus] = useState(undefined);
 
   const handleFormNameChange = ({target: {value}}) => {
     setName(value)
@@ -124,7 +129,9 @@ const UserRegister = () => {
         "password": password,
         "password_confirmation": confirmPassword
       }
-    }).catch((err) => console.log(err)).then(resp => console.log(resp));
+    })
+    .then((resp) => {console.log(resp); setRegistrationStatus(true); setTimeout(() => {history.push("/")}, 1000)})
+    .catch((err) => {console.log(err); history.push("/register"); setRegistrationStatus(false)});
   }
 
   const onFinish = async event => {
@@ -132,6 +139,8 @@ const UserRegister = () => {
     event.preventDefault();
 
     verify() && await registerUserFetch();
+    
+    
   };
 
   return (
@@ -154,6 +163,18 @@ const UserRegister = () => {
           width='245px' 
           height='45px'
           />
+
+    {registrationStatus !== undefined && 
+    
+      registrationStatus === true 
+      ? 
+        <div style={{color: "red"}}>Registration Successeful</div> 
+          : 
+          registrationStatus === false 
+            ? 
+              <div style={{color: "red"}}>Registration Unsuccesseful</div> 
+                : 
+                <div></div>}
 
     </StyledForm>
 
