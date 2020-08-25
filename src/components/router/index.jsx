@@ -34,7 +34,7 @@ const Router = ({ token, setToken }) => {
               <Feedback token={token }/>
             </Route>
 
-            <Route path='/users/'>
+            <Route exact path='/users/'>
               
                 <Users token={token} />
               

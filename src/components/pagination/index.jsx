@@ -1,27 +1,26 @@
 import React, { useState } from 'react'
-import { useLocation, useHistory } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
+import moreIcon from '../../images/icons/more_horiz-black-18dp.svg'
+const Pagination = ({className ,setPageInitial ,setPageFinal, data, pageLimit}) => {
 
-const Pagination = ({className, pageInitial ,setPageInitial, pageFinal ,setPageFinal, data, previousIcon, nextIcon, pageLimit}) => {
-
-    const [page, setPage] = useState(1)
+    const pageArr = []
     const [initialSlice, setInitialSlice] = useState(1)
-		const [lastSlice, setLastSlice] = useState(5)
-		const location = useLocation()
-		const history = useHistory()
+	const [lastSlice, setLastSlice] = useState(5)
+	const history = useHistory()
 
     let totalPages = data.length / pageLimit
     if (totalPages % 1 !== 0) {
         totalPages = Math.floor(totalPages += 1)
     }
 
-    const pageArr = []
+    
 
     for (let i = 1; i <= totalPages; i++) {
         pageArr.push(i)
     }   
     
     const handlePage = (currentPage) => {
-        setPage(currentPage)
+        
         setPageInitial((currentPage - 1) * pageLimit)
         setPageFinal(currentPage * pageLimit)
         if (currentPage === lastSlice - 1) {
@@ -41,21 +40,26 @@ const Pagination = ({className, pageInitial ,setPageInitial, pageFinal ,setPageF
             setLastSlice(lastSlice - 2)
         }
 
-				else if ( currentPage === 2 || currentPage === 3) {
-					setInitialSlice(1)
-					setLastSlice(5)
-				}
-				history.push(`/users/${currentPage}`)
-				console.log(location.pathname)
+	    else if ( currentPage === 2 || currentPage === 3 || currentPage === 1) {
+			setInitialSlice(1)
+			setLastSlice(5)
+        }
+        else if ( currentPage === totalPages) {
+            setInitialSlice(totalPages -5)
+            setLastSlice(totalPages -1)
+        }
+        
+		history.push(`/users/${currentPage}`)
+				
     }
     
     return(
         <div className={className}>
             
             <button key={pageArr[0]} onClick={() => handlePage(pageArr[0])}>{pageArr[0]}</button>
-            <p>...</p>
+            {initialSlice !== 1 && <img src={moreIcon}/>}
             {pageArr.slice(initialSlice,lastSlice).map((page) => <button key={page} onClick={() => handlePage(page)}>{page}</button>)}
-            <p>...</p>
+            <img src={moreIcon}/>
             <button key={totalPages} onClick={() => handlePage(totalPages)}>{totalPages}</button>
 
         </div>

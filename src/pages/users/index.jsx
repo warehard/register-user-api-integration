@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
+import { useParams } from 'react-router-dom'
 import { getUsers } from './helper';
 import StyledTable from '../../styled/styled-table'
 import StyledPagination from '../../styled/styled-pagination';
@@ -9,8 +9,9 @@ import StyledContainer from '../../styled/styled-container'
 
 const Users = ({ token }) => {
 
+  const { page } = useParams()
   const pageLimit = 10
-
+  
   const columns = [
     {
       title: "id",
@@ -53,17 +54,19 @@ const Users = ({ token }) => {
   return(
     <StyledContainer>
       <h1>Students</h1>
-      <StyledTable data={users.slice(pageInitial,pageFinal)} columns={columns} />
+      <StyledTable 
+        data={users.slice((page -1) * 10, page * 10)} 
+        columns={columns} 
+      />
+
       <StyledPagination 
         pageInitial={pageInitial} 
         setPageInitial={setPageInitial} 
         pageFinal={pageFinal} 
         setPageFinal={setPageFinal} 
         data={users} 
-        previousIcon={beforeIcon} 
-        nextIcon={nextIcon}
         pageLimit={pageLimit}
-        />
+      />
     </StyledContainer>
   )
 }

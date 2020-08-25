@@ -27,7 +27,7 @@ function App() {
       </StyledHeader>
       :
       <StyledHeader>
-        <StyledLink to='/users'><span data-hover='Students' className={pathname === '/users' && 'selectedPage'} >Students</span></StyledLink>
+        <StyledLink to='/users/1'><span data-hover='Students' className={pathname === '/users/1' ? 'selectedPage': undefined} >Students</span></StyledLink>
         <StyledLink onClick={() => {localStorage.clear(); setToken(null)}} to='/' ><span data-hover='Logout'>Logout</span></StyledLink>
       </StyledHeader>
       }

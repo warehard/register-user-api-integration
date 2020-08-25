@@ -5,6 +5,7 @@ const StyledPagination = styled(Pagination)`
     width:350px;
     display: flex;
     justify-content:center;
+    align-items:center;
     border-radius:5px;
     height:40px;
     margin:1.25rem;
@@ -14,20 +15,21 @@ const StyledPagination = styled(Pagination)`
         width:250px;
         display:flex;
         justify-content:center;
-        font-family: 'Red Hat Text', sans-serif;
+        
         font-size:20px;
         font-weight:500;
         color: #922ea3;
     }
 
-    p{
-        margin:0;
-        padding-top:2px;
-    }
+    
     button{
+        font-family: 'Red Hat Text', sans-serif;
+        font-weight:bold;
+        font-size:20px;
+        color: #922ea3;
         border: 2px solid #922EA3;
-        width:50px;
-        height:40px;
+        width:45px;
+        height:45px;
         margin:2px;
         background-color:transparent;
         border-radius:5px;
@@ -35,27 +37,31 @@ const StyledPagination = styled(Pagination)`
         
     }
 
-    
-
     button:hover{
-        .previous{
-            
-            transform: translateX(-3px);
-        }
-        .next{
-            transform: translateX(3px);
-        }
+        color: #cb67db;
+        font-size:18px;
     }
 
     button:active{
-        .previous{
-            transform: translateX(-6px);
-        }
-        .next{
-            transform: translateX(6px);
-        }
+       font-size:16px;
+
     }
     
+
+    @media (max-width: 420px) {
+        button {
+           width:35px;
+           height:35px;
+           font-size:18px;
+        }
+        button:hover {
+            font-size:16px;
+        }
+        button:active {
+            font-size: 14px;
+        }
+    }
+
 `
 
 export default StyledPagination

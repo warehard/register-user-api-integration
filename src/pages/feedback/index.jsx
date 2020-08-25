@@ -17,7 +17,7 @@ const Feedback = ({ token }) => {
   const [pageInitial, setPageInitial] = useState(0)
   const [pageFinal, setPageFinal] = useState(10)
 
-
+  console.log(id)
   const columns = [
     {
       title: "id",
@@ -47,6 +47,7 @@ const Feedback = ({ token }) => {
 
   const handleClick = ( id ) => {
     history.push(`/users/feedbacks/${id}/new`)
+    
   }
   
   user.map(e => e.key = e.id)

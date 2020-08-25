@@ -4,7 +4,8 @@ import StyledForm from '../../styled/styled-form'
 import StyledInput from '../../styled/styled-input'
 import StyledButton from '../../styled/styled-button'
 import { useHistory } from 'react-router-dom';
-
+import StyledContainer from '../../styled/styled-container'
+import styled from 'styled-components'
 const defaultValues = {
   name: '',
   username: '',
@@ -120,7 +121,7 @@ const UserRegister = () => {
   }
 
   const registerUserFetch = async () => {
-    const response = await axios.post('https://ka-users-api.herokuapp.com/users', {
+    await axios.post('https://ka-users-api.herokuapp.com/users', {
       "headers": { 'content-type': 'application/json' },
       "user": {
         "name": name,
@@ -144,7 +145,7 @@ const UserRegister = () => {
   };
 
   return (
-
+    <StyledContainer>
     <StyledForm handleSubmit={onFinish} titleSize='60px'>
       <h1>Register</h1>
 
@@ -164,22 +165,29 @@ const UserRegister = () => {
           height='45px'
           />
 
-    {registrationStatus !== undefined && 
     
-      registrationStatus === true 
-      ? 
-        <div style={{color: "red"}}>Registration Successeful</div> 
-          : 
-          registrationStatus === false 
-            ? 
-              <div style={{color: "red"}}>Registration Unsuccesseful</div> 
-                : 
-                <div></div>}
 
     </StyledForm>
 
+    {registrationStatus !== undefined && 
+    
+    registrationStatus === true 
+    ? 
+      <RegisterStatus style={{color:'#4bcc58'}}>Registration Successeful</RegisterStatus> 
+        : 
+        registrationStatus === false 
+          ? 
+            <RegisterStatus style={{color:'#cc4b4b'}}>Registration Failed</RegisterStatus> 
+              : 
+              null}
+  </StyledContainer>
   )
 }
 
 export default UserRegister;
 
+
+const RegisterStatus = styled.div`
+  font-size:25px;
+  font-family: Red Hat Display;
+`
