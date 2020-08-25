@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
+import { useLocation, useHistory } from 'react-router-dom'
 
 const Pagination = ({className, pageInitial ,setPageInitial, pageFinal ,setPageFinal, data, previousIcon, nextIcon, pageLimit}) => {
 
     const [page, setPage] = useState(1)
     const [initialSlice, setInitialSlice] = useState(1)
-    const [lastSlice, setLastSlice] = useState(5)
+		const [lastSlice, setLastSlice] = useState(5)
+		const location = useLocation()
+		const history = useHistory()
 
     let totalPages = data.length / pageLimit
     if (totalPages % 1 !== 0) {
@@ -42,7 +45,8 @@ const Pagination = ({className, pageInitial ,setPageInitial, pageFinal ,setPageF
 					setInitialSlice(1)
 					setLastSlice(5)
 				}
-
+				history.push(`/users/${currentPage}`)
+				console.log(location.pathname)
     }
     
     return(
@@ -53,6 +57,7 @@ const Pagination = ({className, pageInitial ,setPageInitial, pageFinal ,setPageF
             {pageArr.slice(initialSlice,lastSlice).map((page) => <button key={page} onClick={() => handlePage(page)}>{page}</button>)}
             <p>...</p>
             <button key={totalPages} onClick={() => handlePage(totalPages)}>{totalPages}</button>
+
         </div>
     )
 }

@@ -63,7 +63,7 @@ const Login = ({ setToken, setAuthentication }) => {
         setToken(response.data.auth_token)
         setAuthentication(true)
         localStorage.setItem('token', response.data.auth_token)
-        history.push('/users')
+        history.push('/users/')
         }
         catch(error) { 
           setAuthentication(false)

@@ -34,10 +34,14 @@ const Router = ({ token, setToken }) => {
               <Feedback token={token }/>
             </Route>
 
-            <Route path='/users'>
+            <Route path='/users/'>
               
                 <Users token={token} />
               
+            </Route>
+            
+            <Route path='/users/:page'>
+                <Users token={token}/>
             </Route>
 
             <Route path='/register'>
