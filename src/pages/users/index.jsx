@@ -9,6 +9,8 @@ import StyledContainer from '../../styled/styled-container'
 
 const Users = ({ token }) => {
 
+  const pageLimit = 10
+
   const columns = [
     {
       title: "id",
@@ -37,7 +39,7 @@ const Users = ({ token }) => {
 
   const [users, setUsers] = useState([])
   const [pageInitial, setPageInitial] = useState(0)
-  const [pageFinal, setPageFinal] = useState(10)
+  const [pageFinal, setPageFinal] = useState(pageLimit)
 
   useEffect(  () => {
     const data = async () => {
@@ -52,7 +54,16 @@ const Users = ({ token }) => {
     <StyledContainer>
       <h1>Students</h1>
       <StyledTable data={users.slice(pageInitial,pageFinal)} columns={columns} />
-      <StyledPagination pageInitial={pageInitial} setPageInitial={setPageInitial} pageFinal={pageFinal} setPageFinal={setPageFinal} data={users} previousIcon={beforeIcon} nextIcon={nextIcon}/>
+      <StyledPagination 
+        pageInitial={pageInitial} 
+        setPageInitial={setPageInitial} 
+        pageFinal={pageFinal} 
+        setPageFinal={setPageFinal} 
+        data={users} 
+        previousIcon={beforeIcon} 
+        nextIcon={nextIcon}
+        pageLimit={pageLimit}
+        />
     </StyledContainer>
   )
 }

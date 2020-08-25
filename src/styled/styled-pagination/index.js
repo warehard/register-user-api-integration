@@ -2,16 +2,16 @@ import styled from 'styled-components'
 import Pagination from '../../components/pagination'
 
 const StyledPagination = styled(Pagination)`
-    width:20vw;
+    width:350px;
     display: flex;
-    justify-content:space-between;
+    justify-content:center;
     border-radius:5px;
     height:40px;
     margin:1.25rem;
 
     div{
         border: 2px solid #922EA3;
-        width:70%;
+        width:250px;
         display:flex;
         justify-content:center;
         font-family: 'Red Hat Text', sans-serif;
@@ -25,13 +25,14 @@ const StyledPagination = styled(Pagination)`
         padding-top:2px;
     }
     button{
-        width:15%;
+        border: 2px solid #922EA3;
+        width:50px;
+        height:40px;
+        margin:2px;
         background-color:transparent;
-        border:none;
+        border-radius:5px;
         outline:none;
-        img{
-            transition 0.3s;
-        }
+        
     }
 
     
@@ -54,21 +55,7 @@ const StyledPagination = styled(Pagination)`
             transform: translateX(6px);
         }
     }
-    .previousButton{
-        border-left:2px solid #922ea3;
-        border-top:2px solid #922ea3;
-        border-bottom:2px solid #922ea3;
-        border-top-left-radius:5px;
-        border-bottom-left-radius:5px;
-    }
-
-    .nextButton{
-        border-right:2px solid #922ea3;
-        border-top:2px solid #922ea3;
-        border-bottom:2px solid #922ea3;
-        border-top-right-radius:5px;
-        border-bottom-right-radius:5px;
-    }
+    
 `
 
 export default StyledPagination
