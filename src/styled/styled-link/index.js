@@ -7,6 +7,7 @@ const StyledLink = styled(Link)`
     font-weight: 400;
     font-size: 23px;
     color: #f3f3f3;
+    
     margin-right: 2.50rem;
     overflow: hidden;
     
@@ -52,8 +53,11 @@ const StyledLink = styled(Link)`
     .noSelected{
         font-weight:400;
     }
-    
 
-`
+@media only screen and (max-width: 420px) {
+    margin:2.50rem 1rem 2.50rem 2rem;
+}
+
+`;
 
 export default StyledLink

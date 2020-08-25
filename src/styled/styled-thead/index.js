@@ -6,5 +6,9 @@ const StyledTHead = styled(THead)`
     tr{
         height:60px;
     }
+
+    @media (max-width: 420px) {
+       display:none;
+    }
 `
 export default StyledTHead

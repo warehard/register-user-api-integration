@@ -6,6 +6,7 @@ import Users from '../../pages/users'
 import NewFeeback from '../../pages/new-feedback'
 import Feedback from '../../pages/feedback'
 import errorImage from '../../images/404.svg';
+import './index.css';
 
 
 const Router = ({ token, setToken }) => {
@@ -57,7 +58,7 @@ const Router = ({ token, setToken }) => {
 
             <Route path='/users'>
               
-                <img src={errorImage} alt="404 Error" />
+                <img className="Error401" src={errorImage} alt="404 Error" />
               
             </Route>
 

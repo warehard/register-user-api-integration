@@ -33,10 +33,9 @@ function App() {
       }
 
       <Router token={token} setToken={setToken}/>
-      <StyledFooter><p>Desenvolvido por <a href='https://www.linkedin.com/in/augusto-pietroski-8659465a/'>Augusto Pietroski</a> e <a href='https://www.linkedin.com/in/edu-magno/'>Eduardo Magno</a></p></StyledFooter>
+      <StyledFooter><p>Developed by <a href='https://www.linkedin.com/in/augusto-pietroski-8659465a/'>Augusto Pietroski</a> e <a href='https://www.linkedin.com/in/edu-magno/'>Eduardo Magno</a></p></StyledFooter>
     </div>
     )
 }
 
 export default App;
-

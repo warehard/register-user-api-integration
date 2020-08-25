@@ -22,6 +22,12 @@ const StyledInput = styled(Input)`
     label{
         font-size: 14px;
     }
+
+@media only screen and (max-width: 420px) {
+    input {
+        width: 296px;
+    }
+}    
 `;
 
 export default StyledInput
