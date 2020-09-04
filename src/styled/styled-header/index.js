@@ -9,10 +9,11 @@ const StyledHeader = styled(Header)`
   align-items: center;
   justify-content: flex-end;
 
-  
+ 
   
 
   @media only screen and (max-width: 420px) {
+    
     justify-content: center;
   }
 `

@@ -28,9 +28,3 @@ time, mark, audio, video {
   flex-direction: column;
 }
 
-.route{
-  display: flex;
-  justify-content: center;
-  flex-grow: 2;
-  ;
-}

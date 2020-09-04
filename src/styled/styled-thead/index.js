@@ -20,7 +20,7 @@ const StyledTHead = styled(THead)`
     }
     th {
       font-size: 18px;
-      padding: 5px;
+      padding: 0.325rem;
     }
    
   }

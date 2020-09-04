@@ -14,17 +14,39 @@ const StyledTBody = styled(TBody)`
 
   td {
     color: #5F5F5F;
-    padding:10px 20px 10px 20px;
+    padding:0.625rem 1.25rem 0.625rem 1.25rem;
     font-size:16px;
   }
 
-  @media (max-width: 620px) {
+  @media (max-width: 1029px) {
+    tr {
+      width: 90vw;
+    }
+    td {
+      font-size:16px;
+      padding: 0.625rem 0.325rem 0.625rem 0.325rem;
+    }
+   
+  }
+
+  @media (max-width: 905px) {
+    tr {
+      width: 90vw;
+    }
+    td {
+      font-size:14px;
+      padding: 0.625rem 0.325rem 0.625rem 0.325rem;
+    }
+   
+  }
+
+  @media (max-width: 724px) {
     tr {
       width: 90vw;
     }
     td {
       font-size:12px;
-      padding: 5px;
+      padding: 0.625rem 0.325rem 0.625rem 0.325rem;
     }
    
   }
