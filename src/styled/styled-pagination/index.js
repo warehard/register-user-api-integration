@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import Pagination from '../../components/pagination'
 
 const StyledPagination = styled(Pagination)`
-  width: 350px;
+  width: 20vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,7 +44,7 @@ const StyledPagination = styled(Pagination)`
     font-size:16px;
   }
     
-  @media (max-width: 420px) {
+  @media (max-width: 620px) {
     button {
       width:35px;
       height:35px;

@@ -18,19 +18,35 @@ const StyledTBody = styled(TBody)`
     font-size:16px;
   }
 
+  @media (max-width: 620px) {
+    tr {
+      width: 90vw;
+    }
+    td {
+      font-size:12px;
+      padding: 5px;
+    }
+   
+  }
+
   @media (max-width: 420px) {
+    
     tr:first-child {
+      width:100%;
       border-top:2px solid #bdbdbd;
     }
 
     tr {
       display: flex;
       flex-direction: column;
-      width:320px;
+      width:100%;
     } 
     
     td {
-      padding:0;
+      padding:5px;
+      
+      font-size:14px
+      
     }
       
     td:nth-of-type(1):before { content: "Id "; }
@@ -43,6 +59,12 @@ const StyledTBody = styled(TBody)`
       color:#922EA3;
       font-weight:500;
       margin:10px;
+    }
+  }
+
+  @media (max-width: 280px) {
+    td {
+      font-size: 11px;
     }
   }
 `

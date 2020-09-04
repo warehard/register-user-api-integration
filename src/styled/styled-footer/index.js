@@ -17,6 +17,7 @@ const StyledFooter = styled.footer`
 
   @media only screen and (max-width: 420px) {
     font-size: 14px;
+    text-align: center;
   }
 `
 export default StyledFooter

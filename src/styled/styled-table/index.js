@@ -5,11 +5,6 @@ const StyledTable = styled(Table)`
     background-color: #ffffff;
     margin: 0.625rem;
     width: 90vw;
-    border-radius: 5px
-
-
-    @media (max-width: 420px) {
-        width: 100vw;
-    }
+    border-radius: 5px;
 `
 export default StyledTable

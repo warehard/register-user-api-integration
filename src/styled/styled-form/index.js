@@ -12,5 +12,8 @@ const StyledForm = styled(Form)`
     font-size: 24px;
   }
 
+  .error {
+    color: crimson;
+  }
 `
 export default StyledForm
