@@ -16,6 +16,12 @@ const StyledContainer = styled.div`
     margin: 0;
   }
 
+  @media (width:1024px) {
+    h1 {
+      font-size: 90px;
+    }
+  }
+
   @media only screen and (max-width: 420px) {
 
     h1 {

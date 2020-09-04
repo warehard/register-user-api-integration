@@ -10,7 +10,12 @@ const StyledHeader = styled(Header)`
   justify-content: flex-end;
 
  
-  
+  @media (width: 1024px) {
+    a {
+      font-size: 40px;
+    }
+    
+  }
 
   @media only screen and (max-width: 420px) {
     

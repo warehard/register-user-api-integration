@@ -18,7 +18,16 @@ const StyledTBody = styled(TBody)`
     font-size:16px;
   }
 
-  @media (max-width: 1029px) {
+  @media (width: 1024px ) {
+    tr {
+      width: 90vw;
+    }
+    td {
+      font-size:20px;
+    }
+  }
+
+  @media (max-width: 1023px) {
     tr {
       width: 90vw;
     }
@@ -40,13 +49,15 @@ const StyledTBody = styled(TBody)`
    
   }
 
+  
+
   @media (max-width: 724px) {
     tr {
       width: 90vw;
     }
     td {
       font-size:12px;
-      padding: 0.625rem 0.325rem 0.625rem 0.325rem;
+      padding: 0.325rem;
     }
    
   }

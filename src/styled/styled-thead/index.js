@@ -14,6 +14,13 @@ const StyledTHead = styled(THead)`
     padding: 0 20px 0 20px;
   }
 
+
+  @media (width: 1024px) {
+    th {
+      font-size:40px;
+    }
+  }
+
   @media (max-width: 620px) {
     tr {
       width: 100%;
