@@ -32,6 +32,12 @@ const StyledInput = styled(Input)`
       width: 296px;
     }
   }    
+
+  @media only screen and (max-width: 320px) {
+    input {
+      width: 266px;
+    }
+  }   
 `
 
 export default StyledInput
