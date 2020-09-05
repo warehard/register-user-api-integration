@@ -8,3 +8,5 @@ This project is a SPA that counts with user register, login, listing of users, a
 
 
 To see this application : https://register-user-api-integration.vercel.app/
+
+Developed by Eduardo Magno and Augusto Pietroski.
